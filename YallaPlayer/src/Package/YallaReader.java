@@ -24,9 +24,6 @@ public class YallaReader {
 					} catch (Exception e){
 						System.out.println("Probleme mit File!");
 					}
-					
-					
-					
 				}
 			}
 		} catch (Exception e){
