@@ -4,18 +4,14 @@ import com.beaglebuddy.mp3.MP3;
 
 public class YallaReader {
 	public static void main(String[] args) {
-		String path = "C:\\Temp\\TestBibliothek";
+		String path = System.getProperty("user.home") + "/TestBibliothek";
 		File[] listOfFiles;
 		File folder = null;
 		String format = null;
 		int countElements = 0;
 
 		try {
-<<<<<<< HEAD
-			folder = new File(System.getProperty("user.home") + "/TestBibliothek");
-=======
 			folder = new File(path);
->>>>>>> a551a784756feab01623a9d83516bac7b3d3d750
 			listOfFiles = folder.listFiles();
 
 			for (File file : listOfFiles) {
