@@ -12,7 +12,7 @@ public class YallaReader {
 		File folder = null;
 		
 		try {
-			folder = new File("/Users/waleed/Desktop/TestBibliothek");
+			folder = new File(System.getProperty("user.home") + "/TestBibliothek");
 			listOfFiles = folder.listFiles();
 			
 			for (File file : listOfFiles) {
