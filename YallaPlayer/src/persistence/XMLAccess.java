@@ -12,11 +12,13 @@ public class XMLAccess implements LibraryDAO, PlaylistDAO {
 	@Override
 	public PlaylistDTO getAllPlaylists() {
 		// TODO Alle playlisten auslesen
+		return null;
 	}
 
 	@Override
 	public ContainerDTO getLibrary() {
 		// TODO Alles holen, bis auf Playlisten
+		return null;
 	}
 
 	@Override
