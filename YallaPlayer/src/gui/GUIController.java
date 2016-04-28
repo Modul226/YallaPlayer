@@ -3,7 +3,9 @@ package gui;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import business.Library;
 import business.Playlist;
+import business.Song;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import persistence.ContainerDTO;
 import persistence.SongDTO;
 
 public class GUIController extends Application {
@@ -21,10 +24,14 @@ public class GUIController extends Application {
 	private String newPlaylistName;
 	private TextField playlistNameInput;
 	private Playlist playlist = new Playlist();
+	private Library library = new Library();
+	private Song song = new Song();
+	private ContainerDTO container;
 
 
 	public void showRootLayout() {
 		try {
+			// containerAuslesen
 			FXMLLoader loader = new FXMLLoader();
 			loader.setController(this);
 			loader.setLocation(GUIStarter.class.getResource("/gui/FirstView.fxml"));
@@ -76,15 +83,24 @@ public class GUIController extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		this.container = library.getLibrary("PLATZHALTER");
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("YallaPlayer");
 		showRootLayout();
 	}
 
 	public void playlistAdd(){
-		//create ArrayList from selected elements
+		// TODO create ArrayList from selected elements
 		ArrayList<SongDTO> titles = new ArrayList<SongDTO>();
 		playlist.add(newPlaylistName, titles);
+	}
+
+	public void playSong(int songID) {
+		// TODO getSong with ID, play it
+	}
+
+	public void stopSong() {
+		// TODO stop all playing Songs
 	}
 
 	public static void main(String[] args) {

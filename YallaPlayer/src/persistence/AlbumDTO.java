@@ -1,5 +1,8 @@
 package persistence;
 
-public class AlbumDTO {
+import java.util.ArrayList;
 
+public class AlbumDTO {
+	public int albumID;
+	public ArrayList<String> songs = new ArrayList<String>();
 }

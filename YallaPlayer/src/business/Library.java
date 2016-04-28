@@ -1,5 +1,6 @@
 package business;
 
+import persistence.ContainerDTO;
 import persistence.LibraryDAO;
 import persistence.XMLAccess;
 
@@ -11,7 +12,7 @@ public class Library {
 		libraryDAO.readLibrary(path);
 	}
 	
-	public void getLibrary(String path) {
-		libraryDAO.getLibrary();
+	public ContainerDTO getLibrary(String path) {
+		return libraryDAO.getLibrary();
 	}
 }
