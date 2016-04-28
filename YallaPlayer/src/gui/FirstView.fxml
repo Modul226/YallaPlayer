@@ -67,7 +67,7 @@
 					</content>
 				</ScrollPane>
 				<Button layoutX="-1.0" layoutY="275.0" mnemonicParsing="false"
-					prefHeight="27.0" prefWidth="203.0" text="Neue Playlist hinzufügen" />
+					prefHeight="27.0" prefWidth="203.0" text="Neue Playlist hinzufügen" onAction="#showAddPlaylistNameDialog" />
 				<TabPane layoutX="202.0" prefHeight="325.0" prefWidth="438.0"
 					tabClosingPolicy="UNAVAILABLE">
 					<tabs>
