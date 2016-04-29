@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import business.Library;
 import business.Playlist;
-import business.Song;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,7 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import persistence.AlbumDTO;
 import persistence.ContainerDTO;
+import persistence.InterpretDTO;
+import persistence.PlaylistDTO;
 import persistence.SongDTO;
 
 public class GUIController extends Application {
@@ -25,24 +27,70 @@ public class GUIController extends Application {
 	private TextField playlistNameInput;
 	private Playlist playlist = new Playlist();
 	private Library library = new Library();
-	private Song song = new Song();
 	private ContainerDTO container;
 
 
 	public void showRootLayout() {
 		try {
-			// containerAuslesen
 			FXMLLoader loader = new FXMLLoader();
 			loader.setController(this);
-			loader.setLocation(GUIController.class.getResource("/gui/FirstView.fxml"));
+			loader.setLocation(GUIController.class.getResource("/gui/RootView.fxml"));
 			rootLayout = (VBox) loader.load();
 
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
+			// loadDataIntoView();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void loadDataIntoView() {
+		// containerAuslesen
+
+		for (PlaylistDTO playlist : container.getPlaylists()) {
+			for (int songID : playlist.getSongs()) {
+				SongDTO songDTO = container.getSong(songID);
+				// TODO dieses Element mit entsprechenden Daten in View
+				// einfügen
+
+				/*
+				 * <TitledPane animated="false" text="untitled 1"> <content>
+				 * <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+				 * prefWidth="200.0" style="-fx-background-color: D1D1D1;" />
+				 * </content> </TitledPane>
+				 */
+			}
+		}
+
+		for (SongDTO song : container.getSongs()) {
+			// TODO Element für die Liste in Titles erstellen und dann mit
+			// daten befüllen
+			// container.getInterpret(song.getInterpret());
+		}
+
+		for (InterpretDTO interpret : container.getInterprets()) {
+			// TODO Element für die Liste in interprets erstellen und dann mit
+			// daten befüllen
+		}
+
+		for (AlbumDTO album : container.getAlbums()) {
+			// TODO Element für die Liste in albums erstellen und dann mit
+			// daten befüllen
+			for (int songID : album.getSongs()) {
+				SongDTO songDTO = container.getSong(songID);
+				// TODO dieses Element mit entsprechenden Daten in View
+				// einfügen
+
+				/*
+				 * <TitledPane animated="false" text="untitled 1"> <content>
+				 * <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+				 * prefWidth="200.0" style="-fx-background-color: D1D1D1;" />
+				 * </content> </TitledPane>
+				 */
+			}
 		}
 	}
 
@@ -93,6 +141,7 @@ public class GUIController extends Application {
 		// TODO create ArrayList from selected elements
 		ArrayList<SongDTO> titles = new ArrayList<SongDTO>();
 		playlist.add(newPlaylistName, titles);
+		showRootLayout();
 	}
 
 	public void playSong(int songID) {
