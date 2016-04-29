@@ -34,7 +34,7 @@ public class GUIController extends Application {
 			// containerAuslesen
 			FXMLLoader loader = new FXMLLoader();
 			loader.setController(this);
-			loader.setLocation(GUIStarter.class.getResource("/gui/FirstView.fxml"));
+			loader.setLocation(GUIController.class.getResource("/gui/FirstView.fxml"));
 			rootLayout = (VBox) loader.load();
 
 			Scene scene = new Scene(rootLayout);
@@ -50,7 +50,7 @@ public class GUIController extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setController(this);
-			loader.setLocation(GUIStarter.class.getResource("/gui/AddPlaylistNameDialog.fxml"));
+			loader.setLocation(GUIController.class.getResource("/gui/AddPlaylistNameDialog.fxml"));
 			dialog = (GridPane) loader.load();
 
 			Scene scene = new Scene(dialog);
@@ -70,7 +70,7 @@ public class GUIController extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setController(this);
-			loader.setLocation(GUIStarter.class.getResource("/gui/AddPlaylistAddTitlesDialog.fxml"));
+			loader.setLocation(GUIController.class.getResource("/gui/AddPlaylistAddTitlesDialog.fxml"));
 			dialog = (GridPane) loader.load();
 
 			Scene scene = new Scene(dialog);
