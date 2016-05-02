@@ -13,6 +13,10 @@ public class SongDTO {
 
 	}
 
+	public String getPath() {
+		return path;
+	}
+
 	public int getSongID() {
 		return songID;
 	}

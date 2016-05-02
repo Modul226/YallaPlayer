@@ -75,21 +75,21 @@
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0"
 									prefHeight="180.0" prefWidth="200.0" />
-									 <ListView fx:id="titlesList" />
+									 <ListView fx:id="titlesList" onMouseClicked="#playSongClicked"/>
 							</content>
 						</Tab>
 						<Tab text="Artists">
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0"
 									prefHeight="292.0" prefWidth="533.0" />
-								<ListView fx:id="interpretsList"/>
+								<ListView fx:id="interpretsList" onMouseClicked="#playSongClicked"/>
 							</content>
 						</Tab>
 						<Tab text="Albums">
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0"
 									prefHeight="292.0" prefWidth="533.0" />
-								<ListView fx:id="albumsList"/>
+								<ListView fx:id="albumsList" onMouseClicked="#playSongClicked"/>
 							</content>
 						</Tab>
 					</tabs>

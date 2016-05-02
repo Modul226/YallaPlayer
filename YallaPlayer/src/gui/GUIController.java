@@ -15,6 +15,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import persistence.AlbumDTO;
 import persistence.ContainerDTO;
@@ -44,7 +46,6 @@ public class GUIController extends Application {
 	 * artistsList;
 	 */
 
-
 	public void showRootLayout() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -71,7 +72,7 @@ public class GUIController extends Application {
 		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
 		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
 		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		
+
 		ArrayList<AlbumDTO> albums = new ArrayList<AlbumDTO>();
 		ArrayList<Integer> album1 = new ArrayList<Integer>();
 		album1.add(0);
@@ -91,14 +92,14 @@ public class GUIController extends Application {
 		playlist1.add(3);
 		playlist1.add(4);
 		playlists.add(new PlaylistDTO(0, "So gail", playlist1));
-		
+
 		ArrayList<InterpretDTO> interprets = new ArrayList<InterpretDTO>();
 		interprets.add(new InterpretDTO(0, "Babo"));
 		interprets.add(new InterpretDTO(1, "Yolo MC"));
 		interprets.add(new InterpretDTO(2, "Dr boss"));
 
 		container = new ContainerDTO(songs, albums, playlists, interprets);
-		
+
 		// containerAuslesen
 		ObservableList<String> titlesListForView = FXCollections.observableArrayList();
 		ObservableList<String> albumsListForView = FXCollections.observableArrayList();
@@ -121,8 +122,7 @@ public class GUIController extends Application {
 		}
 
 		for (SongDTO song : container.getSongs()) {
-			titlesListForView.add(
-song.getSongID() + "\t" + container.getInterpret(song.getInterpret()).getName()
+			titlesListForView.add(song.getSongID() + "\t" + container.getInterpret(song.getInterpret()).getName()
 					+ " - " + song.getName());
 		}
 
@@ -191,15 +191,26 @@ song.getSongID() + "\t" + container.getInterpret(song.getInterpret()).getName()
 		showRootLayout();
 	}
 
-	public void playlistAdd(){
+	public void playlistAdd() {
 		// TODO create ArrayList from selected elements
 		ArrayList<SongDTO> titles = new ArrayList<SongDTO>();
 		playlist.add(newPlaylistName, titles);
 		showRootLayout();
 	}
 
-	public void playSong(int songID) {
-		// TODO getSong with ID, play it
+	public void playSong(String path) {
+		path = "C:/Temp/TestBibliothek/02 Rosario Intro.mp3";
+		Media media = new Media(path);
+		MediaPlayer mp = new MediaPlayer(media);
+		mp.play();
+	}
+
+	public void playSongClicked() {
+		// TODO funktioniert noch nicht -> nullPointer
+		int idOfClickedItem = titlesList.getSelectionModel().getSelectedItem().charAt(0);
+		String path = container.getSong((Integer) idOfClickedItem).getPath();
+		playSong(path);
+		System.out.println("Playing...");
 	}
 
 	public void stopSong() {
@@ -209,4 +220,5 @@ song.getSongID() + "\t" + container.getInterpret(song.getInterpret()).getName()
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }
