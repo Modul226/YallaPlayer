@@ -7,7 +7,7 @@ public class PlaylistDTO {
 	public ArrayList<Integer> songs = new ArrayList<Integer>();
 	public String name;
 
-	public PlaylistDTO(int playlistID, ArrayList<Integer> songs, String name) {
+	public PlaylistDTO(int playlistID, String name, ArrayList<Integer> songs) {
 		this.playlistID = playlistID;
 		this.songs = songs;
 		this.name = name;

@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import business.Library;
 import business.Playlist;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -29,6 +33,17 @@ public class GUIController extends Application {
 	private Library library = new Library();
 	private ContainerDTO container;
 
+	@FXML
+	private ListView<String> titlesList;
+	@FXML
+	private ListView<String> interpretsList;
+	@FXML
+	private ListView<String> albumsList;
+	/*
+	 * private ListView<String> albumsList; private ListView<String>
+	 * artistsList;
+	 */
+
 
 	public void showRootLayout() {
 		try {
@@ -41,18 +56,58 @@ public class GUIController extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
-			// loadDataIntoView();
+			loadDataIntoView();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void loadDataIntoView() {
+		// Small Mock with some Dada
+		ArrayList<SongDTO> songs = new ArrayList<SongDTO>();
+		songs.add(new SongDTO(0, 0, "Same zelle", "PlatzhalterPfad"));
+		songs.add(new SongDTO(1, 0, "Same gelle", "PlatzhalterPfad"));
+		songs.add(new SongDTO(2, 0, "Same relle", "PlatzhalterPfad"));
+		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
+		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
+		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
+		
+		ArrayList<AlbumDTO> albums = new ArrayList<AlbumDTO>();
+		ArrayList<Integer> album1 = new ArrayList<Integer>();
+		album1.add(0);
+		album1.add(1);
+		album1.add(2);
+		albums.add(new AlbumDTO(0, "Babo de Bozz", album1));
+		ArrayList<Integer> album2 = new ArrayList<Integer>();
+		album2.add(3);
+		album2.add(4);
+		albums.add(new AlbumDTO(1, "Daim", album2));
+
+		ArrayList<PlaylistDTO> playlists = new ArrayList<PlaylistDTO>();
+		ArrayList<Integer> playlist1 = new ArrayList<Integer>();
+		playlist1.add(0);
+		playlist1.add(1);
+		playlist1.add(2);
+		playlist1.add(3);
+		playlist1.add(4);
+		playlists.add(new PlaylistDTO(0, "So gail", playlist1));
+		
+		ArrayList<InterpretDTO> interprets = new ArrayList<InterpretDTO>();
+		interprets.add(new InterpretDTO(0, "Babo"));
+		interprets.add(new InterpretDTO(1, "Yolo MC"));
+		interprets.add(new InterpretDTO(2, "Dr boss"));
+
+		container = new ContainerDTO(songs, albums, playlists, interprets);
+		
 		// containerAuslesen
+		ObservableList<String> titlesListForView = FXCollections.observableArrayList();
+		ObservableList<String> albumsListForView = FXCollections.observableArrayList();
+		ObservableList<String> interpretsListForView = FXCollections.observableArrayList();
 
 		for (PlaylistDTO playlist : container.getPlaylists()) {
 			for (int songID : playlist.getSongs()) {
 				SongDTO songDTO = container.getSong(songID);
+
 				// TODO dieses Element mit entsprechenden Daten in View
 				// einfügen
 
@@ -66,32 +121,31 @@ public class GUIController extends Application {
 		}
 
 		for (SongDTO song : container.getSongs()) {
-			// TODO Element für die Liste in Titles erstellen und dann mit
-			// daten befüllen
-			// container.getInterpret(song.getInterpret());
+			titlesListForView.add(
+song.getSongID() + "\t" + container.getInterpret(song.getInterpret()).getName()
+					+ " - " + song.getName());
 		}
 
 		for (InterpretDTO interpret : container.getInterprets()) {
-			// TODO Element für die Liste in interprets erstellen und dann mit
-			// daten befüllen
+			interpretsListForView.add(interpret.interpretID + "\t" + interpret.getName());
 		}
 
 		for (AlbumDTO album : container.getAlbums()) {
-			// TODO Element für die Liste in albums erstellen und dann mit
-			// daten befüllen
-			for (int songID : album.getSongs()) {
-				SongDTO songDTO = container.getSong(songID);
-				// TODO dieses Element mit entsprechenden Daten in View
-				// einfügen
+			albumsListForView.add(album.getAlbumID() + "\t" + album.getName());
 
-				/*
-				 * <TitledPane animated="false" text="untitled 1"> <content>
-				 * <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-				 * prefWidth="200.0" style="-fx-background-color: D1D1D1;" />
-				 * </content> </TitledPane>
-				 */
-			}
+			// TODO wie bei playlisten accordeons erstellen wenn möglich
+			/*
+			 * for (int songID : album.getSongs()) { SongDTO songDTO =
+			 * container.getSong(songID); // TODO dieses Element mit
+			 * entsprechenden Daten in View // einfügen
+			 * 
+			 * }
+			 */
 		}
+
+		titlesList.setItems(titlesListForView);
+		albumsList.setItems(albumsListForView);
+		interpretsList.setItems(interpretsListForView);
 	}
 
 	public void showAddPlaylistNameDialog() {

@@ -75,24 +75,21 @@
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0"
 									prefHeight="180.0" prefWidth="200.0" />
-								<ScrollBar fx:id="a" orientation="VERTICAL">
-								</ScrollBar>
+									 <ListView fx:id="titlesList" />
 							</content>
 						</Tab>
 						<Tab text="Artists">
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0"
 									prefHeight="292.0" prefWidth="533.0" />
-								<ScrollBar fx:id="a" orientation="VERTICAL">
-								</ScrollBar>
+								<ListView fx:id="interpretsList"/>
 							</content>
 						</Tab>
 						<Tab text="Albums">
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0"
 									prefHeight="292.0" prefWidth="533.0" />
-								<ScrollBar fx:id="a" orientation="VERTICAL">
-								</ScrollBar>
+								<ListView fx:id="albumsList"/>
 							</content>
 						</Tab>
 					</tabs>
