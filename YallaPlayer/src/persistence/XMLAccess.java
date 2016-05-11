@@ -6,14 +6,10 @@ public class XMLAccess implements LibraryDAO, PlaylistDAO {
 
 	@Override
 	public void addNewPlaylist(String name, ArrayList<SongDTO> titles) {
-		// TODO neue playlist hinzufügen
+		// TODO neue playlist hinzufï¿½gen
+		
 	}
 
-	@Override
-	public PlaylistDTO getAllPlaylists() {
-		// TODO Alle playlisten auslesen
-		return null;
-	}
 
 	@Override
 	public ContainerDTO getLibrary() {
@@ -24,5 +20,11 @@ public class XMLAccess implements LibraryDAO, PlaylistDAO {
 	@Override
 	public void readLibrary(String path) {
 		// TODO Library neu auslesen
+	}
+
+	@Override
+	public void writeContainerToXML() {
+		// TODO Auto-generated method stub
+
 	}
 }

@@ -41,6 +41,9 @@ public class GUIController extends Application {
 	private ListView<String> interpretsList;
 	@FXML
 	private ListView<String> albumsList;
+	@FXML
+
+
 	/*
 	 * private ListView<String> albumsList; private ListView<String>
 	 * artistsList;
@@ -110,7 +113,7 @@ public class GUIController extends Application {
 				SongDTO songDTO = container.getSong(songID);
 
 				// TODO dieses Element mit entsprechenden Daten in View
-				// einfügen
+				// einfï¿½gen
 
 				/*
 				 * <TitledPane animated="false" text="untitled 1"> <content>
@@ -133,12 +136,12 @@ public class GUIController extends Application {
 		for (AlbumDTO album : container.getAlbums()) {
 			albumsListForView.add(album.getAlbumID() + "\t" + album.getName());
 
-			// TODO wie bei playlisten accordeons erstellen wenn möglich
+			// TODO wie bei playlisten accordeons erstellen wenn mï¿½glich
 			/*
 			 * for (int songID : album.getSongs()) { SongDTO songDTO =
 			 * container.getSong(songID); // TODO dieses Element mit
-			 * entsprechenden Daten in View // einfügen
-			 * 
+			 * entsprechenden Daten in View // einfï¿½gen
+			 *
 			 * }
 			 */
 		}
@@ -185,7 +188,7 @@ public class GUIController extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		this.container = library.getLibrary("PLATZHALTER");
+		this.container = library.getLibrary();
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("YallaPlayer");
 		showRootLayout();
@@ -194,7 +197,7 @@ public class GUIController extends Application {
 	public void playlistAdd() {
 		// TODO create ArrayList from selected elements
 		ArrayList<SongDTO> titles = new ArrayList<SongDTO>();
-		playlist.add(newPlaylistName, titles);
+		library.addPlaylist(newPlaylistName, titles);
 		showRootLayout();
 	}
 

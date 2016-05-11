@@ -50,4 +50,8 @@ public class ContainerDTO {
 		return interprets;
 	}
 
+	public void addPlaylist(PlaylistDTO playlistDTO){
+		playlists.add(playlistDTO);
+	}
+
 }
