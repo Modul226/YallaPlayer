@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<MenuBar VBox.vgrow="NEVER">
+			<menus>
+				<!-- <Menu mnemonicParsing="false" text="File"> <items> <MenuItem mnemonicParsing="false" 
+					text="New" /> <MenuItem mnemonicParsing="false" text="Open…" /> <Menu mnemonicParsing="false" 
+					text="Open Recent" /> <SeparatorMenuItem mnemonicParsing="false" /> <MenuItem 
+					mnemonicParsing="false" text="Close" /> <MenuItem mnemonicParsing="false" 
+					text="Save" /> <MenuItem mnemonicParsing="false" text="Save As…" /> <MenuItem 
+					mnemonicParsing="false" text="Revert" /> <SeparatorMenuItem mnemonicParsing="false" 
+					/> <MenuItem mnemonicParsing="false" text="Preferences…" /> <SeparatorMenuItem 
+					mnemonicParsing="false" /> <MenuItem mnemonicParsing="false" text="Quit" 
+					/> </items> </Menu> -->
+				<Menu mnemonicParsing="false" text="Settings">
+					<!-- <items> <MenuItem mnemonicParsing="false" text="Undo" /> <MenuItem 
+						mnemonicParsing="false" text="Redo" /> <SeparatorMenuItem mnemonicParsing="false" 
+						/> <MenuItem mnemonicParsing="false" text="Cut" /> <MenuItem mnemonicParsing="false" 
+						text="Copy" /> <MenuItem mnemonicParsing="false" text="Paste" /> <MenuItem 
+						mnemonicParsing="false" text="Delete" /> <SeparatorMenuItem mnemonicParsing="false" 
+						/> <MenuItem mnemonicParsing="false" text="Select All" /> <MenuItem mnemonicParsing="false" 
+						text="Unselect All" /> </items> -->
+				</Menu>
+			</menus>
+		</MenuBar>
+		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0"
+			prefWidth="-1.0" VBox.vgrow="ALWAYS">
+			<children>
+				<Button layoutX="66.0" layoutY="330.0" mnemonicParsing="false"
+					text="Play" />
+				<Button layoutX="135.0" layoutY="330.0" mnemonicParsing="false"
+					text="Pause" />
+				<ScrollPane prefViewportHeight="276.0" prefViewportWidth="202.0">
+					<content>
+						<Accordion prefHeight="276.0" prefWidth="202.0">
+							<panes>
+								<TitledPane animated="false" text="untitled 1">
+									<content>
+										<AnchorPane minHeight="0.0" minWidth="0.0"
+											prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: D1D1D1;" />
+									</content>
+								</TitledPane>
+								<TitledPane animated="false" text="untitled 2">
+									<content>
+										<AnchorPane minHeight="0.0" minWidth="0.0"
+											prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: D1D1D1;" />
+									</content>
+								</TitledPane>
+								<TitledPane animated="false" prefHeight="26.0"
+									prefWidth="202.0" text="untitled 3">
+									<content>
+										<AnchorPane minHeight="0.0" minWidth="0.0"
+											prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: D1D1D1;" />
+									</content>
+								</TitledPane>
+							</panes>
+						</Accordion>
+					</content>
+				</ScrollPane>
+				<Button layoutX="-1.0" layoutY="275.0" mnemonicParsing="false"
+					prefHeight="27.0" prefWidth="203.0" text="Neue Playlist hinzufügen" onAction="#showAddPlaylistNameDialog" />
+				<TabPane layoutX="202.0" prefHeight="325.0" prefWidth="438.0"
+					tabClosingPolicy="UNAVAILABLE">
+					<tabs>
+						<Tab text="Titles">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0"
+									prefHeight="180.0" prefWidth="200.0" />
+									 <ListView fx:id="titlesList" onMouseClicked="#playSongClicked"/>
+							</content>
+						</Tab>
+						<Tab text="Artists">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0"
+									prefHeight="292.0" prefWidth="533.0" />
+								<ListView fx:id="interpretsList" onMouseClicked="#playSongClicked"/>
+							</content>
+						</Tab>
+						<Tab text="Albums">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0"
+									prefHeight="292.0" prefWidth="533.0" />
+								<ListView fx:id="albumsList" onMouseClicked="#playSongClicked"/>
+							</content>
+						</Tab>
+					</tabs>
+				</TabPane>
+			</children>
+		</AnchorPane>
+	</children>
+</VBox>

@@ -1,5 +1,9 @@
 package persistence;
 
-public class LibraryDAO {
+public interface LibraryDAO {
+	public ContainerDTO getLibrary();
 
+	public void readLibrary(String path);
+
+	public void writeContainerToXML();
 }
