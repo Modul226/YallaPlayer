@@ -5,5 +5,5 @@ public interface LibraryDAO {
 
 	public void readLibrary(String path);
 
-	public void writeContainerToXML();
+	public void writeContainerToXML(ContainerDTO containerDTO);
 }

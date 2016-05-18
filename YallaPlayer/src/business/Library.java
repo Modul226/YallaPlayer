@@ -1,11 +1,7 @@
 package business;
 
-import java.util.ArrayList;
-
 import persistence.ContainerDTO;
 import persistence.LibraryDAO;
-import persistence.PlaylistDTO;
-import persistence.SongDTO;
 import persistence.XMLAccess;
 
 public class Library {
@@ -20,8 +16,7 @@ public class Library {
 		return libraryDAO.getLibrary();
 	}
 
-	public void addPlaylist(String name, ArrayList<SongDTO> titles) {
-		this.getLibrary().playlists.add(new PlaylistDTO(name, titles));
-		libraryDAO.writeContainerToXML();
+	public void writeContainerToXML(ContainerDTO containerDTO) {
+		libraryDAO.writeContainerToXML(containerDTO);
 	}
 }

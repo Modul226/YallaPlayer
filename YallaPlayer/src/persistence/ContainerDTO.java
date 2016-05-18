@@ -3,10 +3,10 @@ package persistence;
 import java.util.ArrayList;
 
 public class ContainerDTO {
-	public ArrayList<SongDTO> songs = new ArrayList<SongDTO>();
-	public ArrayList<AlbumDTO> albums = new ArrayList<AlbumDTO>();
-	public ArrayList<PlaylistDTO> playlists = new ArrayList<PlaylistDTO>();
-	public ArrayList<InterpretDTO> interprets = new ArrayList<InterpretDTO>();
+	private ArrayList<SongDTO> songs = new ArrayList<SongDTO>();
+	private ArrayList<AlbumDTO> albums = new ArrayList<AlbumDTO>();
+	private ArrayList<PlaylistDTO> playlists = new ArrayList<PlaylistDTO>();
+	private ArrayList<InterpretDTO> interprets = new ArrayList<InterpretDTO>();
 
 	public ContainerDTO(ArrayList<SongDTO> songs, ArrayList<AlbumDTO> albums, ArrayList<PlaylistDTO> playlists,
 			ArrayList<InterpretDTO> interprets) {
@@ -36,6 +36,16 @@ public class ContainerDTO {
 			}
 		}
 		return null;
+	}
+
+	public ArrayList<SongDTO> getInterpretTitles(int interpretID) {
+		ArrayList<SongDTO> interpretSongs = new ArrayList<SongDTO>();
+		for (SongDTO song : songs) {
+			if (song.getInterpret() == interpretID) {
+				interpretSongs.add(song);
+			}
+		}
+		return interpretSongs;
 	}
 
 	public ArrayList<AlbumDTO> getAlbums() {

@@ -5,11 +5,10 @@ import java.util.ArrayList;
 public class XMLAccess implements LibraryDAO, PlaylistDAO {
 
 	@Override
-	public void addNewPlaylist(String name, ArrayList<SongDTO> titles) {
+	public void addPlaylist(String name, ArrayList<Integer> titles) {
 		// TODO neue playlist hinzuf�gen
-		
-	}
 
+	}
 
 	@Override
 	public ContainerDTO getLibrary() {
@@ -23,7 +22,7 @@ public class XMLAccess implements LibraryDAO, PlaylistDAO {
 	}
 
 	@Override
-	public void writeContainerToXML() {
+	public void writeContainerToXML(ContainerDTO containerDTO) {
 		// TODO Auto-generated method stub
 
 	}

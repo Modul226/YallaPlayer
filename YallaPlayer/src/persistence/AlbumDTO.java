@@ -3,9 +3,9 @@ package persistence;
 import java.util.ArrayList;
 
 public class AlbumDTO {
-	public int albumID;
-	public String name;
-	public ArrayList<Integer> songs = new ArrayList<Integer>();
+	private int albumID;
+	private String name;
+	private ArrayList<Integer> songs = new ArrayList<Integer>();
 
 	public AlbumDTO(int albumID, String name, ArrayList<Integer> songs) {
 		this.albumID = albumID;
@@ -22,6 +22,11 @@ public class AlbumDTO {
 	}
 
 	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String toString() {
 		return name;
 	}
 }

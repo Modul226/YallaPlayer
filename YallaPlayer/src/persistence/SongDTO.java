@@ -1,15 +1,19 @@
 package persistence;
 
 public class SongDTO {
-	public int songID;
-	public int interpret;
-	public String name;
-	public String path;
+	private int songID;
+	private int interpret;
+	private String name;
+	private String path;
+
+	// Is only used when in playlist will be inserted in GUIController.java
+	private int playlist;
 
 	public SongDTO(int songID, int interpret, String name, String path) {
 		this.songID = songID;
 		this.interpret = interpret;
 		this.name = name;
+		this.playlist = -1;
 
 	}
 
@@ -27,5 +31,18 @@ public class SongDTO {
 
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public int getPlaylist() {
+		return playlist;
+	}
+
+	public void setPlaylist(int playlist) {
+		this.playlist = playlist;
 	}
 }

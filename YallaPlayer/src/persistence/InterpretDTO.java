@@ -1,8 +1,8 @@
 package persistence;
 
 public class InterpretDTO {
-	public int interpretID;
-	public String name;
+	private int interpretID;
+	private String name;
 
 	public InterpretDTO(int interpretID, String name) {
 		this.interpretID = interpretID;
@@ -14,6 +14,11 @@ public class InterpretDTO {
 	}
 
 	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String toString() {
 		return name;
 	}
 }
