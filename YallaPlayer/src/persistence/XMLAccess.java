@@ -1,14 +1,7 @@
 package persistence;
 
-import java.util.ArrayList;
+public class XMLAccess implements LibraryDAO {
 
-public class XMLAccess implements LibraryDAO, PlaylistDAO {
-
-	@Override
-	public void addPlaylist(String name, ArrayList<Integer> titles) {
-		// TODO neue playlist hinzuf�gen
-
-	}
 
 	@Override
 	public ContainerDTO getLibrary() {

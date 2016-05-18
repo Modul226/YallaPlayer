@@ -56,12 +56,12 @@ public class ContainerDTO {
 		return playlists;
 	}
 
-	public ArrayList<InterpretDTO> getInterprets() {
-		return interprets;
+	public void addPlaylist(String name,ArrayList<Integer> playlist){
+		playlists.add(new PlaylistDTO(playlists.size() + 1, name, playlist));
 	}
 
-	public void addPlaylist(PlaylistDTO playlistDTO){
-		playlists.add(playlistDTO);
+	public ArrayList<InterpretDTO> getInterprets() {
+		return interprets;
 	}
 
 }

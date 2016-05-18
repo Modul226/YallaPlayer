@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import business.Library;
-import business.Playlist;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +26,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import persistence.AlbumDTO;
-import persistence.ContainerDTO;
 import persistence.InterpretDTO;
 import persistence.PlaylistDTO;
 import persistence.SongDTO;
@@ -40,9 +38,7 @@ public class GUIController extends Application {
 	private GridPane dialog;
 	private String newPlaylistName;
 	private TextField playlistNameInput;
-	private Playlist playlist = new Playlist();
 	private Library library = new Library();
-	private ContainerDTO containerDTO;
 
 	@FXML
 	private ListView<SongDTO> titlesList;
@@ -74,131 +70,17 @@ public class GUIController extends Application {
 
 	public void loadDataIntoView() {
 
-		// Small Mock with some Dada
-		ArrayList<SongDTO> songs = new ArrayList<SongDTO>();
-		songs.add(new SongDTO(0, 0, "Same zelle", "PlatzhalterPfad"));
-		songs.add(new SongDTO(1, 0, "Same gelle", "PlatzhalterPfad"));
-		songs.add(new SongDTO(2, 0, "Same relle", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(3, 1, "jaja", "PlatzhalterPfad"));
-		songs.add(new SongDTO(4, 1, "Test", "PlatzhalterPfad"));
-		songs.add(new SongDTO(5, 2, "Test", "PlatzhalterPfad"));
-
-		ArrayList<AlbumDTO> albums = new ArrayList<AlbumDTO>();
-		ArrayList<Integer> album1 = new ArrayList<Integer>();
-		album1.add(0);
-		album1.add(1);
-		album1.add(2);
-		albums.add(new AlbumDTO(0, "Babo de Bozz", album1));
-		ArrayList<Integer> album2 = new ArrayList<Integer>();
-		album2.add(3);
-		album2.add(4);
-		albums.add(new AlbumDTO(1, "Daim", album2));
-
-		ArrayList<PlaylistDTO> playlists = new ArrayList<PlaylistDTO>();
-		ArrayList<Integer> playlist1 = new ArrayList<Integer>();
-		playlist1.add(0);
-		playlist1.add(1);
-		playlist1.add(2);
-		playlist1.add(3);
-		playlist1.add(4);
-		playlist1.add(1);
-		playlist1.add(2);
-		playlist1.add(3);
-		playlist1.add(4);
-		playlist1.add(1);
-		playlist1.add(2);
-		playlist1.add(3);
-		playlist1.add(4);
-		playlist1.add(1);
-		playlist1.add(2);
-		playlist1.add(3);
-		playlist1.add(4);
-		playlist1.add(1);
-		playlist1.add(2);
-		playlist1.add(3);
-		playlist1.add(4);
-		playlist1.add(1);
-		playlist1.add(2);
-		playlist1.add(3);
-		playlist1.add(4);
-		playlists.add(new PlaylistDTO(0, "So gail", playlist1));
-		playlists.add(new PlaylistDTO(2, "So gaasdfil", playlist1));
-		playlists.add(new PlaylistDTO(3, "So gaasdfil", playlist1));
-		playlists.add(new PlaylistDTO(4, "So gail", playlist1));
-		playlists.add(new PlaylistDTO(3, "So gasdfail", playlist1));
-
-		ArrayList<InterpretDTO> interprets = new ArrayList<InterpretDTO>();
-		interprets.add(new InterpretDTO(0, "Babo"));
-		interprets.add(new InterpretDTO(1, "Yolo MC"));
-		interprets.add(new InterpretDTO(2, "Dr boss"));
-
-		containerDTO = new ContainerDTO(songs, albums, playlists, interprets);
-
 		ObservableList<SongDTO> titlesListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> albumsListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> playlistsListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> interpretsListForView = FXCollections.observableArrayList();
 
-		for (PlaylistDTO playlist : containerDTO.getPlaylists()) {
+		for (PlaylistDTO playlist : library.getLibrary().getPlaylists()) {
 			ListView<SongDTO> singlePlaylistList = new ListView<SongDTO>();
 			ObservableList<SongDTO> titlesListForPlaylist = FXCollections.observableArrayList();
 			int playlistID = playlist.getPlaylistID();
 			for (int songID : playlist.getSongs()) {
-				SongDTO songDTO = containerDTO.getSong(songID);
+				SongDTO songDTO = library.getLibrary().getSong(songID);
 				SongDTO newSongDTO = new SongDTO(songDTO.getSongID(), songDTO.getInterpret(), songDTO.getName(),
 						songDTO.getPath());
 				newSongDTO.setPlaylist(playlistID);
@@ -212,14 +94,14 @@ public class GUIController extends Application {
 			playlistsListForView.add(tp);
 		}
 
-		for (SongDTO song : containerDTO.getSongs()) {
+		for (SongDTO song : library.getLibrary().getSongs()) {
 			titlesListForView.add(song);
 		}
 
-		for (InterpretDTO interpret : containerDTO.getInterprets()) {
+		for (InterpretDTO interpret : library.getLibrary().getInterprets()) {
 			ListView<SongDTO> singleInterpretList = new ListView<SongDTO>();
 			ObservableList<SongDTO> titlesListForInterpret = FXCollections.observableArrayList();
-			for (SongDTO songDTO : containerDTO.getInterpretTitles(interpret.getInterpretID())) {
+			for (SongDTO songDTO : library.getLibrary().getInterpretTitles(interpret.getInterpretID())) {
 				titlesListForInterpret.add(songDTO);
 			}
 			singleInterpretList.setPrefHeight(titlesListForInterpret.size() * ROW_HEIGHT);
@@ -231,10 +113,10 @@ public class GUIController extends Application {
 			addListenerOnListView(singleInterpretList);
 		}
 
-		for (AlbumDTO album : containerDTO.getAlbums()) {
+		for (AlbumDTO album : library.getLibrary().getAlbums()) {
 			ListView<SongDTO> singleAlbumList = new ListView<SongDTO>();
 			ObservableList<SongDTO> titlesListForAlbum = FXCollections.observableArrayList();
-			for (SongDTO songDTO : containerDTO.getInterpretTitles(album.getAlbumID())) {
+			for (SongDTO songDTO : library.getLibrary().getInterpretTitles(album.getAlbumID())) {
 				titlesListForAlbum.add(songDTO);
 			}
 			singleAlbumList.setPrefHeight(titlesListForAlbum.size() * ROW_HEIGHT);
@@ -298,7 +180,7 @@ public class GUIController extends Application {
 
 			selectTitlesForPlaylistList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-			for (SongDTO song : containerDTO.getSongs()) {
+			for (SongDTO song : library.getLibrary().getSongs()) {
 				titlesListForView.add(song);
 			}
 
@@ -336,7 +218,6 @@ public class GUIController extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		this.containerDTO = library.getLibrary();
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("YallaPlayer");
 		showRootLayout();
@@ -351,8 +232,8 @@ public class GUIController extends Application {
 			titles.add(song.getSongID());
 		}
 
-		playlist.addPlaylist(newPlaylistName, titles);
-		library.writeContainerToXML(containerDTO);
+		library.addPlaylist(newPlaylistName, titles);
+		library.writeContainerToXML();
 		showRootLayout();
 	}
 
