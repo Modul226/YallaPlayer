@@ -70,8 +70,6 @@ public class XMLAccess implements LibraryDAO {
 		File folder = null;
 		String format = null;
 		int songID = 0;
-		int interpretID = 0;
-		int albumID = 0;
 
 		try {
 			folder = new File(pathDefault);
@@ -87,62 +85,80 @@ public class XMLAccess implements LibraryDAO {
 						MP3 mp3 = new MP3(file.getAbsolutePath());
 
 						if (mp3.getBand() != null) {
-							// System.out.println(countElements + " " +
-							// mp3.getTitle() + " - " + mp3.getBand());
 
-							InterpretDTO interpret = new InterpretDTO(interpretID, mp3.getBand());
-							if (!this.interprets.contains(mp3.getBand())) {
+							int newSongsInterpretID = containsInterpret(mp3.getBand());
+							if (newSongsInterpretID == -1) {
+								InterpretDTO interpret = new InterpretDTO(interprets.size() + 1, mp3.getBand());
 								this.interprets.add(interpret);
-								interpretID++;
+								newSongsInterpretID = interprets.size();
 							}
 
-							SongDTO song = new SongDTO(songID, interpret.getInterpretID(), mp3.getTitle(),
+							SongDTO song = new SongDTO(songID, newSongsInterpretID, mp3.getTitle(),
 									file.getAbsolutePath());
-							this.songs.add(song);
 
-						} else {
-							// System.out.println(countElements + " " +
-							// mp3.getTitle() + " - " +
-							// mp3.getID3v1Tag().getArtist());
-
-							InterpretDTO interpret = new InterpretDTO(interpretID, mp3.getID3v1Tag().getArtist());
-							if (!this.interprets.contains(mp3.getID3v1Tag().getArtist())) {
-								this.interprets.add(interpret);
-								interpretID++;
-							}
-
-							SongDTO song = new SongDTO(songID, interpret.getInterpretID(), mp3.getTitle(),
-									file.getAbsolutePath());
 							this.songs.add(song);
 							songID++;
-						}
 
-						ArrayList<Integer> songs = new ArrayList<>();
-						songs.add(songID);
+							ArrayList<Integer> songs = new ArrayList<>();
+							songs.add(songID);
 
-						if (mp3.getAlbum() != null) {
-							AlbumDTO album = new AlbumDTO(albumID, mp3.getAlbum(), songs);
-							if (!this.albums.contains(mp3.getAlbum())) {
-								this.albums.add(album);
-								albumID++;
+							if (mp3.getAlbum() != null) {
+								int newAlbumID = containsAlbum(mp3.getAlbum());
+								if (newAlbumID == -1) {
+									ArrayList<Integer> songsForAlbum = new ArrayList<Integer>();
+									songsForAlbum.add(song.getSongID());
+									AlbumDTO album = new AlbumDTO(albums.size() + 1, mp3.getAlbum(), songsForAlbum);
+									this.albums.add(album);
+								} else {
+									AlbumDTO albumToAddSongTo = getAlbumById(newAlbumID);
+									albumToAddSongTo.getSongs().add(song.getSongID());
+								}
 							}
+
+						} else {
+							int newSongsInterpretID = containsInterpret(mp3.getID3v1Tag().getArtist());
+							if (newSongsInterpretID == -1) {
+								InterpretDTO interpret = new InterpretDTO(interprets.size() + 1,
+										mp3.getID3v1Tag().getArtist());
+								this.interprets.add(interpret);
+								newSongsInterpretID = interprets.size();
+							}
+
+							SongDTO song = new SongDTO(songID, newSongsInterpretID, mp3.getTitle(),
+									file.getAbsolutePath());
+
+							this.songs.add(song);
+							songID++;
+
+							ArrayList<Integer> songs = new ArrayList<>();
+							songs.add(songID);
+
+							if (mp3.getAlbum() != null) {
+								int newAlbumID = containsAlbum(mp3.getAlbum());
+								if (newAlbumID == -1) {
+									ArrayList<Integer> songsForAlbum = new ArrayList<Integer>();
+									songsForAlbum.add(song.getSongID());
+									AlbumDTO album = new AlbumDTO(albums.size() + 1, mp3.getAlbum(), songsForAlbum);
+									this.albums.add(album);
+								} else {
+									AlbumDTO albumToAddSongTo = getAlbumById(newAlbumID);
+									albumToAddSongTo.getSongs().add(song.getSongID());
+								}
+							}
+
 						}
+						
 						container = new ContainerDTO(this.songs, this.albums, null, this.interprets);
 						writeContainerToXML(container);
 
 					} catch (Exception e) {
-						// System.out.println("Probleme mit File " +
-						// file.getAbsolutePath() + "\n");
+
 						e.printStackTrace();
 					}
-				} else {
-					// System.out.println("Keine Mp3-Datei! Dies war eine " +
-					// format + " Datei!");
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			// System.out.println("Angegebener Pfad existiert nicht!");
 		} finally {
 			if (folder != null) {
 				folder.deleteOnExit();
@@ -151,9 +167,30 @@ public class XMLAccess implements LibraryDAO {
 
 	}
 
-	// public static void main(String[] args) {
-	// new XMLAccess().test();
+	private int containsInterpret(String interpretName) {
+		for (InterpretDTO interpret : interprets) {
+			if (interpretName.equals(interpret.getName())) {
+				return interpret.getInterpretID();
+			}
+		}
+		return -1;
+	}
 
-	// }
+	private AlbumDTO getAlbumById(int albumId) {
+		for (AlbumDTO album : albums) {
+			if (album.getAlbumID() == albumId) {
+				return album;
+			}
+		}
+		return null;
+	}
 
+	private int containsAlbum(String albumName) {
+		for (AlbumDTO album : albums) {
+			if (albumName.equals(album.getName())) {
+				return album.getAlbumID();
+			}
+		}
+		return -1;
+	}
 }
