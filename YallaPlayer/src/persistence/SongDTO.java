@@ -1,5 +1,7 @@
 package persistence;
 
+import javax.xml.bind.annotation.XmlElement;
+
 public class SongDTO {
 	private int songID;
 	private int interpret;
@@ -9,10 +11,14 @@ public class SongDTO {
 	// Is only used when in playlist will be inserted in GUIController.java
 	private int playlist;
 
+	public SongDTO() {
+	}
+
 	public SongDTO(int songID, int interpret, String name, String path) {
 		this.songID = songID;
 		this.interpret = interpret;
 		this.name = name;
+		this.path = path;
 		this.playlist = -1;
 
 	}
@@ -42,7 +48,29 @@ public class SongDTO {
 		return playlist;
 	}
 
+	@XmlElement
 	public void setPlaylist(int playlist) {
 		this.playlist = playlist;
 	}
+
+	@XmlElement
+	public void setSongID(int songID) {
+		this.songID = songID;
+	}
+
+	@XmlElement
+	public void setInterpret(int interpret) {
+		this.interpret = interpret;
+	}
+
+	@XmlElement
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@XmlElement
+	public void setPath(String path) {
+		this.path = path;
+	}
+
 }

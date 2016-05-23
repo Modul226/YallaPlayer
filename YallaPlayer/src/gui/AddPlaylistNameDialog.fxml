@@ -18,7 +18,7 @@
             <Font name="System Bold" size="13.0" />
           </font>
         </Label>
-            <TextField fx:id="playlistName" />
+            <TextField fx:id="playlistNameInput" />
       </children>
     </VBox>
     <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.rowIndex="1">
@@ -36,7 +36,7 @@
         </Button>
         <HBox fx:id="okParent" alignment="CENTER">
           <children>
-            <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" text="Ok" HBox.hgrow="NEVER" onAction="#showAddPlaylistAddTitlesDialog">
+            <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" text="Ok" HBox.hgrow="NEVER" onAction="#playlistNameIsSet">
               <HBox.margin>
                 <Insets left="14.0" />
               </HBox.margin>

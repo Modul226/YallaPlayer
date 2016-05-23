@@ -12,7 +12,7 @@ public class Library {
 	private ContainerDTO containerDTO;
 
 	public Library(){
-		readLibrary();
+		readLibrary("adsf");
 	}
 
 	public void readLibrary(String path) {
@@ -20,9 +20,13 @@ public class Library {
 		this.containerDTO = libraryDAO.getLibrary();
 	}
 
+	public void readLibrary() {
+		libraryDAO.readLibrary();
+	}
+
 	public void addPlaylist(String name, ArrayList<Integer> titles){
 		containerDTO.addPlaylist(name,titles);
-		readLibrary();
+		libraryDAO.readLibrary();
 	}
 
 	public ContainerDTO getLibrary() {

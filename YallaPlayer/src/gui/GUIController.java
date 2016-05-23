@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
@@ -37,9 +38,10 @@ public class GUIController extends Application {
 	private VBox rootLayout;
 	private GridPane dialog;
 	private String newPlaylistName;
-	private TextField playlistNameInput;
 	private Library library = new Library();
 
+	@FXML
+	private TextField playlistNameInput;
 	@FXML
 	private ListView<SongDTO> titlesList;
 	@FXML
@@ -49,7 +51,12 @@ public class GUIController extends Application {
 	@FXML
 	private ListView<SongDTO> selectTitlesForPlaylistList;
 	@FXML
+	private Label playStatusLabel;
+	@FXML
 	private Accordion accordionForPlaylists;
+	private MediaPlayer mediaPlayer = null;
+	private SongDTO songDtoPlaying = null;
+	private String playStatus = null;
 
 	public void showRootLayout() {
 		try {
@@ -63,6 +70,10 @@ public class GUIController extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.show();
 			loadDataIntoView();
+			if (playStatus != null) {
+				playStatusLabel.setText(playStatus);
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -75,23 +86,25 @@ public class GUIController extends Application {
 		ObservableList<TitledPane> playlistsListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> interpretsListForView = FXCollections.observableArrayList();
 
-		for (PlaylistDTO playlist : library.getLibrary().getPlaylists()) {
-			ListView<SongDTO> singlePlaylistList = new ListView<SongDTO>();
-			ObservableList<SongDTO> titlesListForPlaylist = FXCollections.observableArrayList();
-			int playlistID = playlist.getPlaylistID();
-			for (int songID : playlist.getSongs()) {
-				SongDTO songDTO = library.getLibrary().getSong(songID);
-				SongDTO newSongDTO = new SongDTO(songDTO.getSongID(), songDTO.getInterpret(), songDTO.getName(),
-						songDTO.getPath());
-				newSongDTO.setPlaylist(playlistID);
-				titlesListForPlaylist.add(newSongDTO);
+		if (library.getLibrary().getPlaylists() != null) {
+			for (PlaylistDTO playlist : library.getLibrary().getPlaylists()) {
+				ListView<SongDTO> singlePlaylistList = new ListView<SongDTO>();
+				ObservableList<SongDTO> titlesListForPlaylist = FXCollections.observableArrayList();
+				int playlistID = playlist.getPlaylistID();
+				for (int songID : playlist.getSongs()) {
+					SongDTO songDTO = library.getLibrary().getSong(songID);
+					SongDTO newSongDTO = new SongDTO(songDTO.getSongID(), songDTO.getInterpret(), songDTO.getName(),
+							songDTO.getPath());
+					newSongDTO.setPlaylist(playlistID);
+					titlesListForPlaylist.add(newSongDTO);
+				}
+				addListenerOnListView(singlePlaylistList);
+				singlePlaylistList.setPrefHeight(titlesListForPlaylist.size() * ROW_HEIGHT);
+				singlePlaylistList.setItems(titlesListForPlaylist);
+				TitledPane tp = new TitledPane(playlist.getName(), singlePlaylistList);
+				tp.setExpanded(false);
+				playlistsListForView.add(tp);
 			}
-			addListenerOnListView(singlePlaylistList);
-			singlePlaylistList.setPrefHeight(titlesListForPlaylist.size() * ROW_HEIGHT);
-			singlePlaylistList.setItems(titlesListForPlaylist);
-			TitledPane tp = new TitledPane(playlist.getName(), singlePlaylistList);
-			tp.setExpanded(false);
-			playlistsListForView.add(tp);
 		}
 
 		for (SongDTO song : library.getLibrary().getSongs()) {
@@ -141,10 +154,12 @@ public class GUIController extends Application {
 			@Override
 			public void handle(MouseEvent event) {
 				SongDTO song = lv.getSelectionModel().getSelectedItem();
-				if (song.getPlaylist() == -1) {
-					playSongClicked(song);
-				} else {
-					playPlaylistClicked(song);
+				if (song != null) {
+					if (song.getPlaylist() == -1) {
+						playSongClicked(song);
+					} else {
+						playPlaylistClicked(song);
+					}
 				}
 			}
 		});
@@ -234,36 +249,50 @@ public class GUIController extends Application {
 
 		library.addPlaylist(newPlaylistName, titles);
 		library.writeContainerToXML();
+		library.readLibrary();
 		showRootLayout();
 	}
 
-	public void playSong(String path) {
-		final File resource = new File(path);
+	public void playSong(SongDTO song) {
+		songDtoPlaying = song;
+		playStatus = songDtoPlaying.getName() + " - Playing";
+		playStatusLabel.setText(playStatus);
+		final File resource = new File(song.getPath());
 		String tmpString = resource.toURI().toString();
 		final Media media = new Media(tmpString);
-		final MediaPlayer mediaPlayer = new MediaPlayer(media);
+		if (mediaPlayer != null) {
+			mediaPlayer.stop();
+		}
+		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.play();
-
-		primaryStage.setTitle("Audio Player 1");
-		primaryStage.setWidth(200);
-		primaryStage.setHeight(200);
-		primaryStage.show();
 	}
 
 	public void playSongClicked(SongDTO song) {
-		playSong(song.getPath());
-		System.out.println(song.getSongID());
+		System.out.println("Path: " + song.getPath());
+		playSong(song);
 		System.out.println("Playing...");
 	}
 
 	public void playPlaylistClicked(SongDTO song) {
-		playSong(song.getPath());
+		playSong(song);
 		System.out.println(song.getPlaylist());
 		System.out.println("Playing...");
 	}
 
-	public void stopSong() {
-		// TODO stop all playing Songs
+	public void pauseSong() {
+		if (mediaPlayer != null) {
+			mediaPlayer.pause();
+			playStatus = songDtoPlaying.getName() + " - Paused";
+			playStatusLabel.setText(playStatus);
+		}
+	}
+
+	public void playSong() {
+		if (mediaPlayer != null) {
+			mediaPlayer.play();
+			playStatus = songDtoPlaying.getName() + " - Playing";
+			playStatusLabel.setText(playStatus);
+		}
 	}
 
 	public static void main(String[] args) {
