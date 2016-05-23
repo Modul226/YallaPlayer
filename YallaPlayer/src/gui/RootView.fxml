@@ -17,7 +17,7 @@
 		</MenuBar>
 		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
 			<children>
-				<Button layoutX="498.0" layoutY="343.0" mnemonicParsing="false" text="Play" onAction="#playSong"/>
+				<Button layoutX="498.0" layoutY="343.0" mnemonicParsing="false" text="Play" onAction="#playPausedSong"/>
 				<Button layoutX="550.0" layoutY="343.0" mnemonicParsing="false" text="Pause" onAction="#pauseSong"/>
 				<Button layoutX="7.0" layoutY="342.0" mnemonicParsing="false" onAction="#showAddPlaylistNameDialog" prefHeight="27.0" prefWidth="196.0" text="Neue Playlist hinzufügen" />
 				<TabPane layoutX="202.0" prefHeight="325.0" prefWidth="438.0" tabClosingPolicy="UNAVAILABLE">

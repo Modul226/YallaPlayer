@@ -57,6 +57,7 @@ public class GUIController extends Application {
 	private MediaPlayer mediaPlayer = null;
 	private SongDTO songDtoPlaying = null;
 	private String playStatus = null;
+	private PlaylistDTO playlistPlaying = null;
 
 	public void showRootLayout() {
 		try {
@@ -79,7 +80,7 @@ public class GUIController extends Application {
 		}
 	}
 
-	public void loadDataIntoView() {
+	private void loadDataIntoView() {
 
 		ObservableList<SongDTO> titlesListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> albumsListForView = FXCollections.observableArrayList();
@@ -185,7 +186,7 @@ public class GUIController extends Application {
 		showAddPlaylistAddTitlesDialog();
 	}
 
-	public void showAddPlaylistAddTitlesDialog() {
+	private void showAddPlaylistAddTitlesDialog() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setController(this);
@@ -253,7 +254,10 @@ public class GUIController extends Application {
 		showRootLayout();
 	}
 
-	public void playSong(SongDTO song) {
+	private void playSong(SongDTO song) {
+		if (song.getPlaylist() == -1) {
+			playlistPlaying = null;
+		}
 		songDtoPlaying = song;
 		playStatus = songDtoPlaying.getName() + " - Playing";
 		playStatusLabel.setText(playStatus);
@@ -265,16 +269,17 @@ public class GUIController extends Application {
 		}
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.play();
+		addEndSongListener();
 	}
 
-	public void playSongClicked(SongDTO song) {
+	private void playSongClicked(SongDTO song) {
 		System.out.println("Path: " + song.getPath());
 		playSong(song);
 		System.out.println("Playing...");
 	}
 
-	public void playPlaylistClicked(SongDTO song) {
-		playSong(song);
+	private void playPlaylistClicked(SongDTO song) {
+		playPlaylist(song);
 		System.out.println(song.getPlaylist());
 		System.out.println("Playing...");
 	}
@@ -287,12 +292,37 @@ public class GUIController extends Application {
 		}
 	}
 
-	public void playSong() {
+	public void playPausedSong() {
 		if (mediaPlayer != null) {
 			mediaPlayer.play();
 			playStatus = songDtoPlaying.getName() + " - Playing";
 			playStatusLabel.setText(playStatus);
 		}
+	}
+
+	public void playPlaylist(SongDTO song) {
+		playlistPlaying = library.getLibrary().getPlaylist(song.getPlaylist());
+		playSong(song);
+	}
+	
+	public void addEndSongListener(){
+		mediaPlayer.setOnEndOfMedia(new Runnable() {
+			@Override
+			public void run() {
+				if (playlistPlaying != null) {
+					ArrayList<Integer> songs = playlistPlaying.getSongs();
+					for (int i : songs) {
+						if (i == songDtoPlaying.getSongID()) {
+							// NextTitle
+							int nextSongId = playlistPlaying.getSongs().indexOf(i) + 1;
+							SongDTO nextSong = library.getLibrary().getSong(playlistPlaying.getSongs().get(nextSongId));
+							nextSong.setPlaylist(playlistPlaying.getPlaylistID());
+							playSong(nextSong);
+						}
+					}
+				}
+			}
+		});
 	}
 
 	public static void main(String[] args) {

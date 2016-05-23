@@ -45,6 +45,16 @@ public class ContainerDTO {
 		return null;
 	}
 
+	public PlaylistDTO getPlaylist(int playlistID) {
+		for (PlaylistDTO playlist : playlists) {
+			if (playlist.getPlaylistID() == playlistID) {
+				return playlist;
+			}
+		}
+		return null;
+	}
+
+
 	public ArrayList<SongDTO> getInterpretTitles(int interpretID) {
 		ArrayList<SongDTO> interpretSongs = new ArrayList<SongDTO>();
 		for (SongDTO song : songs) {
