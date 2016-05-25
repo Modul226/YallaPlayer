@@ -130,8 +130,8 @@ public class GUIController extends Application {
 		for (AlbumDTO album : library.getLibrary().getAlbums()) {
 			ListView<SongDTO> singleAlbumList = new ListView<SongDTO>();
 			ObservableList<SongDTO> titlesListForAlbum = FXCollections.observableArrayList();
-			for (SongDTO songDTO : library.getLibrary().getInterpretTitles(album.getAlbumID())) {
-				titlesListForAlbum.add(songDTO);
+			for (int songID : album.getSongs()) {
+				titlesListForAlbum.add(library.getLibrary().getSong(songID));
 			}
 			singleAlbumList.setPrefHeight(titlesListForAlbum.size() * ROW_HEIGHT);
 			singleAlbumList.setItems(titlesListForAlbum);
@@ -304,7 +304,7 @@ public class GUIController extends Application {
 		playlistPlaying = library.getLibrary().getPlaylist(song.getPlaylist());
 		playSong(song);
 	}
-	
+
 	public void addEndSongListener(){
 		mediaPlayer.setOnEndOfMedia(new Runnable() {
 			@Override
