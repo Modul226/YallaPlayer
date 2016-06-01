@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -22,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -37,6 +39,7 @@ public class GUIController extends Application {
 	private Stage primaryStage;
 	private VBox rootLayout;
 	private GridPane dialog;
+	private Pane settings;
 	private String newPlaylistName;
 	private Library library = new Library();
 
@@ -54,10 +57,14 @@ public class GUIController extends Application {
 	private Label playStatusLabel;
 	@FXML
 	private Accordion accordionForPlaylists;
+	@FXML
+	private ColorPicker colorPicker;
+
 	private MediaPlayer mediaPlayer = null;
 	private SongDTO songDtoPlaying = null;
 	private String playStatus = null;
 	private PlaylistDTO playlistPlaying = null;
+	public javafx.scene.paint.Color accentColor;
 
 	public void showRootLayout() {
 		try {
@@ -75,6 +82,24 @@ public class GUIController extends Application {
 				playStatusLabel.setText(playStatus);
 			}
 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void showSettingsView() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setController(this);
+			loader.setLocation(GUIController.class.getResource("/gui/Settings.fxml"));
+			settings = (Pane) loader.load();
+
+			Scene scene = new Scene(settings);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			if (accentColor != null) {
+				colorPicker.setValue(accentColor);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -104,8 +129,24 @@ public class GUIController extends Application {
 				singlePlaylistList.setItems(titlesListForPlaylist);
 				TitledPane tp = new TitledPane(playlist.getName(), singlePlaylistList);
 				tp.setExpanded(false);
+				if (accentColor != null) {
+					// 8 symbols.
+					String hex1 = Integer.toHexString(accentColor.hashCode());
+
+					// With # prefix.
+					String hex2 = "#" + Integer.toHexString(accentColor.hashCode());
+
+					// 6 symbols in capital letters.
+					String hex3 = Integer.toHexString(accentColor.hashCode()).substring(0, 6).toUpperCase();
+					// tp.setStyle("-fx-background-color: #"+ hex3 +";");
+
+					Label l = new Label("asdfasdf");
+					l.setStyle("-fx-background-color: green;");
+					//tp.setTitle(l);
+				}
 				playlistsListForView.add(tp);
 			}
+			accordionForPlaylists.getPanes().addAll(playlistsListForView);
 		}
 
 		for (SongDTO song : library.getLibrary().getSongs()) {
@@ -142,7 +183,6 @@ public class GUIController extends Application {
 			addListenerOnListView(singleAlbumList);
 		}
 
-		accordionForPlaylists.getPanes().addAll(playlistsListForView);
 		titlesList.setItems(titlesListForView);
 		addListenerOnListView(titlesList);
 		albumsList.setItems(albumsListForView);
@@ -232,6 +272,12 @@ public class GUIController extends Application {
 		}
 	}
 
+	public void savePickedColor() {
+		accentColor = colorPicker.getValue();
+		System.out.println(accentColor.toString());
+
+	}
+
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -305,7 +351,7 @@ public class GUIController extends Application {
 		playSong(song);
 	}
 
-	public void addEndSongListener(){
+	public void addEndSongListener() {
 		mediaPlayer.setOnEndOfMedia(new Runnable() {
 			@Override
 			public void run() {

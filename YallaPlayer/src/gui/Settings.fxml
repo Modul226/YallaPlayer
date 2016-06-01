@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<Pane prefHeight="180.0" prefWidth="201.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<ColorPicker fx:id="colorPicker" layoutX="13.0" layoutY="63.0" prefHeight="42.0" prefWidth="110.0" />
+      <Label layoutX="65.0" layoutY="14.0" text="Settings">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="49.0" layoutY="139.0" mnemonicParsing="false" onAction="#showRootLayout" text="Return to App" />
+      <Button layoutX="137.0" layoutY="70.0" mnemonicParsing="false" onAction="#savePickedColor" text="Save" />
+	</children>
+</Pane>
