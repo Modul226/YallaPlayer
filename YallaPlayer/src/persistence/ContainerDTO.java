@@ -103,4 +103,15 @@ public class ContainerDTO {
 		}
 		playlists.add(new PlaylistDTO(playlists.size() + 1, name, playlist));
 	}
+
+	public void removeTitleFromPlaylist(int playlist, int songID) {
+		PlaylistDTO playlistDTO = getPlaylist(playlist);
+		int playlistIndex = playlists.indexOf(playlistDTO);
+		playlists.get(playlistIndex).removeSong(songID);
+	}
+
+	public void removePlaylist(int playlist) {
+		PlaylistDTO playlistDTO = getPlaylist(playlist);
+		playlists.remove(playlists.indexOf(playlistDTO));
+	}
 }

@@ -112,6 +112,8 @@ public class GUIController extends Application {
 		ObservableList<TitledPane> playlistsListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> interpretsListForView = FXCollections.observableArrayList();
 
+		TitledPane titledPaneToExpand = null;
+
 		if (library.getLibrary().getPlaylists() != null) {
 			for (PlaylistDTO playlist : library.getLibrary().getPlaylists()) {
 				ListView<SongDTO> singlePlaylistList = new ListView<SongDTO>();
@@ -129,24 +131,33 @@ public class GUIController extends Application {
 				singlePlaylistList.setItems(titlesListForPlaylist);
 				TitledPane tp = new TitledPane(playlist.getName(), singlePlaylistList);
 				tp.setExpanded(false);
-				if (accentColor != null) {
-					// 8 symbols.
-					String hex1 = Integer.toHexString(accentColor.hashCode());
 
-					// With # prefix.
-					String hex2 = "#" + Integer.toHexString(accentColor.hashCode());
-
-					// 6 symbols in capital letters.
-					String hex3 = Integer.toHexString(accentColor.hashCode()).substring(0, 6).toUpperCase();
-					// tp.setStyle("-fx-background-color: #"+ hex3 +";");
-
-					Label l = new Label("asdfasdf");
-					l.setStyle("-fx-background-color: green;");
-					//tp.setTitle(l);
+				// TODO add color accents
+				/*
+				 * if (accentColor != null) { // 8 symbols. String hex1 =
+				 * Integer.toHexString(accentColor.hashCode());
+				 * 
+				 * // With # prefix. String hex2 = "#" +
+				 * Integer.toHexString(accentColor.hashCode());
+				 * 
+				 * // 6 symbols in capital letters. String hex3 =
+				 * Integer.toHexString(accentColor.hashCode()).substring(0,
+				 * 6).toUpperCase(); // tp.setStyle("-fx-background-color: #"+
+				 * hex3 +";");
+				 * 
+				 * Label l = new Label("asdfasdf"); l.setStyle(
+				 * "-fx-background-color: green;"); //tp.setTitle(l); }
+				 */
+				if (playlistPlaying != null) {
+					if (playlist.getPlaylistID() == playlistPlaying.getPlaylistID()) {
+						titledPaneToExpand = tp;
+						System.out.println("samepl");
+					}
 				}
 				playlistsListForView.add(tp);
 			}
 			accordionForPlaylists.getPanes().addAll(playlistsListForView);
+			accordionForPlaylists.setExpandedPane(titledPaneToExpand);
 		}
 
 		for (SongDTO song : library.getLibrary().getSongs()) {
@@ -300,6 +311,38 @@ public class GUIController extends Application {
 		showRootLayout();
 	}
 
+	public void removeTitleFromPlaylist() {
+		TitledPane expandedPane = accordionForPlaylists.getExpandedPane();
+		if (expandedPane != null) {
+			@SuppressWarnings("unchecked")
+			ListView<SongDTO> lv = (ListView<SongDTO>) expandedPane.getContent();
+			SongDTO clickedSong = lv.getSelectionModel().getSelectedItem();
+			if (clickedSong != null) {
+				library.removeTitleFromPlaylist(clickedSong.getPlaylist(), clickedSong.getSongID());
+
+				library.writeContainerToXML();
+				library.readLibrary();
+				showRootLayout();
+			}
+		}
+	}
+
+	public void removeFullPlaylist() {
+		TitledPane expandedPane = accordionForPlaylists.getExpandedPane();
+		if (expandedPane != null) {
+			@SuppressWarnings("unchecked")
+			ListView<SongDTO> lv = (ListView<SongDTO>) expandedPane.getContent();
+			SongDTO clickedSong = lv.getSelectionModel().getSelectedItem();
+			if (clickedSong != null) {
+				library.removePlaylist(clickedSong.getPlaylist());
+
+				library.writeContainerToXML();
+				library.readLibrary();
+				showRootLayout();
+			}
+		}
+	}
+
 	private void playSong(SongDTO song) {
 		if (song.getPlaylist() == -1) {
 			playlistPlaying = null;
@@ -359,7 +402,6 @@ public class GUIController extends Application {
 					ArrayList<Integer> songs = playlistPlaying.getSongs();
 					for (int i : songs) {
 						if (i == songDtoPlaying.getSongID()) {
-							// NextTitle
 							int nextSongId = playlistPlaying.getSongs().indexOf(i) + 1;
 							SongDTO nextSong = library.getLibrary().getSong(playlistPlaying.getSongs().get(nextSongId));
 							nextSong.setPlaylist(playlistPlaying.getPlaylistID());

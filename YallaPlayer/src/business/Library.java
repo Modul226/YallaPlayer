@@ -36,4 +36,13 @@ public class Library {
 	public void writeContainerToXML() {
 		libraryDAO.writeContainerToXML(this.containerDTO);
 	}
+
+	public void removeTitleFromPlaylist(int playlist, int songID) {
+		containerDTO.removeTitleFromPlaylist(playlist, songID);
+	}
+
+	public void removePlaylist(int playlist) {
+		containerDTO.removePlaylist(playlist);
+
+	}
 }

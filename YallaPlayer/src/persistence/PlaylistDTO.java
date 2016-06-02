@@ -47,4 +47,8 @@ public class PlaylistDTO {
 		this.name = name;
 	}
 
+	public void removeSong(int songID) {
+		songs.remove(songs.indexOf(songID));
+	}
+
 }
