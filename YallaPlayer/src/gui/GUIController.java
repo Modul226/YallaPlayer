@@ -19,6 +19,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
@@ -46,6 +47,8 @@ public class GUIController extends Application {
 	@FXML
 	private TextField playlistNameInput;
 	@FXML
+	private TextField searchInput;
+	@FXML
 	private ListView<SongDTO> titlesList;
 	@FXML
 	private ListView<TitledPane> interpretsList;
@@ -59,11 +62,14 @@ public class GUIController extends Application {
 	private Accordion accordionForPlaylists;
 	@FXML
 	private ColorPicker colorPicker;
+	@FXML
+	private TabPane tabPaneLibrary;
 
 	private MediaPlayer mediaPlayer = null;
 	private SongDTO songDtoPlaying = null;
 	private String playStatus = null;
 	private PlaylistDTO playlistPlaying = null;
+	private ObservableList<SongDTO> titlesListForView = FXCollections.observableArrayList();
 	public javafx.scene.paint.Color accentColor;
 
 	public void showRootLayout() {
@@ -107,7 +113,6 @@ public class GUIController extends Application {
 
 	private void loadDataIntoView() {
 
-		ObservableList<SongDTO> titlesListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> albumsListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> playlistsListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> interpretsListForView = FXCollections.observableArrayList();
@@ -151,7 +156,6 @@ public class GUIController extends Application {
 				if (playlistPlaying != null) {
 					if (playlist.getPlaylistID() == playlistPlaying.getPlaylistID()) {
 						titledPaneToExpand = tp;
-						System.out.println("samepl");
 					}
 				}
 				playlistsListForView.add(tp);
@@ -163,6 +167,7 @@ public class GUIController extends Application {
 		for (SongDTO song : library.getLibrary().getSongs()) {
 			titlesListForView.add(song);
 		}
+
 
 		for (InterpretDTO interpret : library.getLibrary().getInterprets()) {
 			ListView<SongDTO> singleInterpretList = new ListView<SongDTO>();
@@ -194,10 +199,15 @@ public class GUIController extends Application {
 			addListenerOnListView(singleAlbumList);
 		}
 
+
+
+
 		titlesList.setItems(titlesListForView);
 		addListenerOnListView(titlesList);
 		albumsList.setItems(albumsListForView);
 		interpretsList.setItems(interpretsListForView);
+
+		
 
 	}
 
@@ -387,6 +397,20 @@ public class GUIController extends Application {
 			playStatus = songDtoPlaying.getName() + " - Playing";
 			playStatusLabel.setText(playStatus);
 		}
+	}
+
+	public void searchActiveTab() {
+		/*
+		 * Tab tabActive =
+		 * tabPaneLibrary.getTabs().get(tabPaneLibrary.getSelectionModel().
+		 * getSelectedIndex());
+		 * 
+		 * @SuppressWarnings("unchecked") ListView<SongDTO> listView =
+		 * (ListView<SongDTO>) tabActive.getContent();
+		 * listView.setItems(titlesListForView.filtered(SongDTO ->
+		 * SongDTO.toString().contains(searchInput.getText())));
+		 */
+		titlesList.setItems(titlesListForView.filtered(SongDTO -> SongDTO.getName().contains(searchInput.getText())));
 	}
 
 	public void playPlaylist(SongDTO song) {

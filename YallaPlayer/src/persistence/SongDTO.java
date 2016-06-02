@@ -73,4 +73,12 @@ public class SongDTO {
 		this.path = path;
 	}
 
+	public Object contains(String filter) {
+		if (this.toString().matches("%" + filter + "%")) {
+			return this;
+		} else {
+			return null;
+		}
+	}
+
 }
