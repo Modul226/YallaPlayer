@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="640.0">
 			<menus>
@@ -19,17 +19,25 @@
             </Menu>
 			</menus>
 		</MenuBar>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="31.0" prefWidth="204.0">
-         <children>
-            <TextField fx:id="searchInput" cache="true" layoutX="8.0" layoutY="3.0" prefHeight="24.0" prefWidth="186.0" promptText="search" onKeyPressed="#searchActiveTab">
-               <font>
-                  <Font size="11.0" />
-               </font>
-            </TextField>
-         </children>
-      </AnchorPane>
-		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+      <TextField fx:id="searchInput" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#searchActiveTab" prefHeight="24.0" prefWidth="640.0" promptText="search">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </TextField>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="31.0" prefWidth="204.0" />
+		<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
 			<children>
+            <Accordion fx:id="accordionForPlaylists" layoutY="-31.0" prefHeight="340.0" prefWidth="203.0" />
+            <Button layoutX="7.0" layoutY="314.0" mnemonicParsing="false" onAction="#removeTitleFromPlaylist" prefHeight="19.0" prefWidth="90.0" text="Remove Title">
+               <font>
+                  <Font name="AdobeMyungjoStd-Medium" size="9.0" />
+               </font>
+            </Button>
+            <Button layoutX="109.0" layoutY="314.0" mnemonicParsing="false" onAction="#removeFullPlaylist" prefHeight="19.0" prefWidth="83.0" text="Remove Playlist">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
             <Label fx:id="playStatusLabel" layoutX="227.0" layoutY="342.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="248.0" text="No Title Playing at the Moment">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -38,12 +46,12 @@
 				<Button layoutX="498.0" layoutY="338.0" mnemonicParsing="false" onAction="#playPausedSong" text="Play" />
 				<Button layoutX="550.0" layoutY="338.0" mnemonicParsing="false" onAction="#pauseSong" text="Pause" />
 				<Button layoutX="7.0" layoutY="336.0" mnemonicParsing="false" onAction="#showAddPlaylistNameDialog" prefHeight="27.0" prefWidth="186.0" text="Add new playlist" />
-				<TabPane fx:id="tabPaneLibrary" layoutX="202.0" layoutY="-31.0" prefHeight="350.0" prefWidth="438.0" tabClosingPolicy="UNAVAILABLE">
+				<TabPane fx:id="tabPaneLibrary" layoutX="202.0" layoutY="-31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="438.0" tabClosingPolicy="UNAVAILABLE">
 					<tabs>
 						<Tab text="Titles">
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-								<ListView fx:id="titlesList" prefHeight="321.0" prefWidth="395.0" />
+								<ListView fx:id="titlesList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="438.0" />
 							</content>
 						</Tab>
 						<Tab text="Artists">
@@ -60,17 +68,6 @@
 						</Tab>
 					</tabs>
 				</TabPane>
-            <Accordion fx:id="accordionForPlaylists" layoutY="5.0" prefHeight="304.0" prefWidth="203.0" />
-            <Button layoutX="7.0" layoutY="314.0" mnemonicParsing="false" onAction="#removeTitleFromPlaylist" prefHeight="19.0" prefWidth="90.0" text="Remove Title">
-               <font>
-                  <Font name="AdobeMyungjoStd-Medium" size="9.0" />
-               </font>
-            </Button>
-            <Button layoutX="109.0" layoutY="314.0" mnemonicParsing="false" onAction="#removeFullPlaylist" prefHeight="19.0" prefWidth="83.0" text="Remove Playlist">
-               <font>
-                  <Font size="9.0" />
-               </font>
-            </Button>
 			</children>
 		</AnchorPane>
 	</children>

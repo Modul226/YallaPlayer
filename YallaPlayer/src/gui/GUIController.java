@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import business.Library;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -19,6 +21,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
@@ -69,8 +72,10 @@ public class GUIController extends Application {
 	private SongDTO songDtoPlaying = null;
 	private String playStatus = null;
 	private PlaylistDTO playlistPlaying = null;
-	private ObservableList<SongDTO> titlesListForView = FXCollections.observableArrayList();
 	public javafx.scene.paint.Color accentColor;
+	private ObservableList<SongDTO> titlesListForSearch = null;
+	private ObservableList<TitledPane> albumsListForSearch = null;
+	private ObservableList<TitledPane> interpretsListForSearch = null;
 
 	public void showRootLayout() {
 		try {
@@ -78,7 +83,6 @@ public class GUIController extends Application {
 			loader.setController(this);
 			loader.setLocation(GUIController.class.getResource("/gui/RootView.fxml"));
 			rootLayout = (VBox) loader.load();
-
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -113,10 +117,11 @@ public class GUIController extends Application {
 
 	private void loadDataIntoView() {
 
-		ObservableList<TitledPane> albumsListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> playlistsListForView = FXCollections.observableArrayList();
+		ObservableList<SongDTO> titlesListForView = FXCollections.observableArrayList();
+		ObservableList<TitledPane> albumsListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> interpretsListForView = FXCollections.observableArrayList();
-
+		
 		TitledPane titledPaneToExpand = null;
 
 		if (library.getLibrary().getPlaylists() != null) {
@@ -138,21 +143,21 @@ public class GUIController extends Application {
 				tp.setExpanded(false);
 
 				// TODO add color accents
-				/*
-				 * if (accentColor != null) { // 8 symbols. String hex1 =
-				 * Integer.toHexString(accentColor.hashCode());
-				 * 
-				 * // With # prefix. String hex2 = "#" +
-				 * Integer.toHexString(accentColor.hashCode());
-				 * 
-				 * // 6 symbols in capital letters. String hex3 =
-				 * Integer.toHexString(accentColor.hashCode()).substring(0,
-				 * 6).toUpperCase(); // tp.setStyle("-fx-background-color: #"+
-				 * hex3 +";");
-				 * 
-				 * Label l = new Label("asdfasdf"); l.setStyle(
-				 * "-fx-background-color: green;"); //tp.setTitle(l); }
-				 */
+				//
+				// if (accentColor != null) { // 8 symbols. String hex1 =
+				// Integer.toHexString(accentColor.hashCode());
+				//
+				// // With # prefix. String hex2 = "#" +
+				// Integer.toHexString(accentColor.hashCode());
+				//
+				// // 6 symbols in capital letters. String hex3 =
+				// Integer.toHexString(accentColor.hashCode()).substring(0,
+				// 6).toUpperCase(); // tp.setStyle("-fx-background-color: #"+
+				// hex3 +";");
+				//
+				// Label l = new Label("asdfasdf"); l.setStyle(
+				// "-fx-background-color: green;"); //tp.setTitle(l); }
+
 				if (playlistPlaying != null) {
 					if (playlist.getPlaylistID() == playlistPlaying.getPlaylistID()) {
 						titledPaneToExpand = tp;
@@ -199,15 +204,16 @@ public class GUIController extends Application {
 			addListenerOnListView(singleAlbumList);
 		}
 
-
-
+		addTabChangeListener();
 
 		titlesList.setItems(titlesListForView);
 		addListenerOnListView(titlesList);
 		albumsList.setItems(albumsListForView);
 		interpretsList.setItems(interpretsListForView);
-
 		
+		interpretsListForSearch = interpretsListForView;
+		albumsListForSearch = albumsListForView;
+		titlesListForSearch = titlesListForView;
 
 	}
 
@@ -223,6 +229,18 @@ public class GUIController extends Application {
 						playPlaylistClicked(song);
 					}
 				}
+			}
+		});
+	}
+
+	private void addTabChangeListener() {
+		tabPaneLibrary.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
+			@Override
+			public void changed(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue) {
+				titlesList.setItems(titlesListForSearch);
+				albumsList.setItems(albumsListForSearch);
+				interpretsList.setItems(interpretsListForSearch);
+				searchInput.clear();
 			}
 		});
 	}
@@ -345,9 +363,11 @@ public class GUIController extends Application {
 			SongDTO clickedSong = lv.getSelectionModel().getSelectedItem();
 			if (clickedSong != null) {
 				library.removePlaylist(clickedSong.getPlaylist());
-
 				library.writeContainerToXML();
 				library.readLibrary();
+				if (playlistPlaying.getPlaylistID() == clickedSong.getPlaylist()) {
+					playlistPlaying = null;
+				}
 				showRootLayout();
 			}
 		}
@@ -400,17 +420,26 @@ public class GUIController extends Application {
 	}
 
 	public void searchActiveTab() {
-		/*
-		 * Tab tabActive =
-		 * tabPaneLibrary.getTabs().get(tabPaneLibrary.getSelectionModel().
-		 * getSelectedIndex());
-		 * 
-		 * @SuppressWarnings("unchecked") ListView<SongDTO> listView =
-		 * (ListView<SongDTO>) tabActive.getContent();
-		 * listView.setItems(titlesListForView.filtered(SongDTO ->
-		 * SongDTO.toString().contains(searchInput.getText())));
-		 */
-		titlesList.setItems(titlesListForView.filtered(SongDTO -> SongDTO.getName().contains(searchInput.getText())));
+
+		Tab tabActive = tabPaneLibrary.getTabs().get(tabPaneLibrary.getSelectionModel().getSelectedIndex());
+
+		if (tabActive.getText().equals("Titles")) {
+			ObservableList<SongDTO> filterListTitles = titlesListForSearch;
+			titlesList.setItems(filterListTitles.filtered(
+					SongDTO -> SongDTO.getName().toUpperCase().contains(searchInput.getText().toUpperCase())));
+		}
+		if (tabActive.getText().equals("Albums")) {
+			ObservableList<TitledPane> filterListAlbums = albumsListForSearch;
+			albumsList.setItems(filterListAlbums.filtered(
+					TitledPane -> TitledPane.getText().toUpperCase().contains(searchInput.getText().toUpperCase())));
+		}
+
+		if (tabActive.getText().equals("Artists")) {
+			ObservableList<TitledPane> filterListArtists = interpretsListForSearch;
+			interpretsList.setItems(filterListArtists.filtered(
+					TitledPane -> TitledPane.getText().toUpperCase().contains(searchInput.getText().toUpperCase())));
+		}
+
 	}
 
 	public void playPlaylist(SongDTO song) {
@@ -428,8 +457,10 @@ public class GUIController extends Application {
 						if (i == songDtoPlaying.getSongID()) {
 							int nextSongId = playlistPlaying.getSongs().indexOf(i) + 1;
 							SongDTO nextSong = library.getLibrary().getSong(playlistPlaying.getSongs().get(nextSongId));
-							nextSong.setPlaylist(playlistPlaying.getPlaylistID());
-							playSong(nextSong);
+							if(nextSong != null){
+								nextSong.setPlaylist(playlistPlaying.getPlaylistID());
+								playSong(nextSong);
+							}
 						}
 					}
 				}
