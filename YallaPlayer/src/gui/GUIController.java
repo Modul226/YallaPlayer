@@ -455,17 +455,18 @@ public class GUIController extends Application {
 			@Override
 			public void run() {
 				if (playlistPlaying != null) {
-					int nextSongId = playlistPlaying.getSongs().indexOf(songDtoPlaying.getSongID()) + 1;
-					SongDTO nextSong = library.getLibrary().getSong(playlistPlaying.getSongs().get(nextSongId));
-					if (nextSong != null) {
+					int nextSongIndex = playlistPlaying.getSongs().indexOf(songDtoPlaying.getSongID()) + 1;
+					if (playlistPlaying.getSongs().size() >= nextSongIndex + 1) {
+						SongDTO nextSong = library.getLibrary().getSong(playlistPlaying.getSongs().get(nextSongIndex));
 						nextSong.setPlaylist(playlistPlaying.getPlaylistID());
 						playSong(nextSong);
 					}
 				} else {
-					int nextSongId = library.getLibrary().getSongs().indexOf(songDtoPlaying) + 1;
-					SongDTO nextSong = library.getLibrary().getSong(playlistPlaying.getSongs().get(nextSongId));
-					if (nextSong != null) {
-						nextSong.setPlaylist(playlistPlaying.getPlaylistID());
+					SongDTO lastSongFromLibrary = library.getLibrary().getSong(songDtoPlaying.getSongID());
+					int nextSongIndex = library.getLibrary().getSongs().indexOf(lastSongFromLibrary) + 1;
+
+					if (library.getLibrary().getSongs().size() >= nextSongIndex + 1) {
+						SongDTO nextSong = library.getLibrary().getSong(nextSongIndex);
 						playSong(nextSong);
 					}
 				}
