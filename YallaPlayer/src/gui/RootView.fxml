@@ -24,34 +24,41 @@
             <Font size="11.0" />
          </font>
       </TextField>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="31.0" prefWidth="204.0" />
-		<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="31.0" prefWidth="204.0">
+         <children>
+            <Label layoutX="76.0" layoutY="5.0" text="Playlists">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+		<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
 			<children>
-            <Accordion fx:id="accordionForPlaylists" layoutY="-31.0" prefHeight="340.0" prefWidth="203.0" />
-            <Button layoutX="7.0" layoutY="314.0" mnemonicParsing="false" onAction="#removeTitleFromPlaylist" prefHeight="19.0" prefWidth="90.0" text="Remove Title">
+            <Accordion fx:id="accordionForPlaylists" layoutY="-3.0" prefHeight="312.0" prefWidth="203.0" />
+            <Button layoutX="7.0" layoutY="317.0" mnemonicParsing="false" onAction="#removeTitleFromPlaylist" prefHeight="19.0" prefWidth="90.0" text="Remove Title">
                <font>
                   <Font name="AdobeMyungjoStd-Medium" size="9.0" />
                </font>
             </Button>
-            <Button layoutX="109.0" layoutY="314.0" mnemonicParsing="false" onAction="#removeFullPlaylist" prefHeight="19.0" prefWidth="83.0" text="Remove Playlist">
+            <Button layoutX="109.0" layoutY="317.0" mnemonicParsing="false" onAction="#removeFullPlaylist" prefHeight="19.0" prefWidth="83.0" text="Remove Playlist">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <Label fx:id="playStatusLabel" layoutX="227.0" layoutY="342.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="248.0" text="No Title Playing at the Moment">
+            <Label fx:id="playStatusLabel" layoutX="215.0" layoutY="333.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="248.0" text="No Title Playing at the Moment">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-				<Button layoutX="498.0" layoutY="338.0" mnemonicParsing="false" onAction="#playPausedSong" text="Play" />
-				<Button layoutX="550.0" layoutY="338.0" mnemonicParsing="false" onAction="#pauseSong" text="Pause" />
-				<Button layoutX="7.0" layoutY="336.0" mnemonicParsing="false" onAction="#showAddPlaylistNameDialog" prefHeight="27.0" prefWidth="186.0" text="Add new playlist" />
+				<Button layoutX="490.0" layoutY="340.0" mnemonicParsing="false" onAction="#playPausedSong" text="Play" />
+				<Button layoutX="539.0" layoutY="341.0" mnemonicParsing="false" onAction="#pauseSong" text="Pause" />
+				<Button layoutX="7.0" layoutY="339.0" mnemonicParsing="false" onAction="#showAddPlaylistNameDialog" prefHeight="27.0" prefWidth="186.0" text="Add new playlist" />
 				<TabPane fx:id="tabPaneLibrary" layoutX="202.0" layoutY="-31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="438.0" tabClosingPolicy="UNAVAILABLE">
 					<tabs>
 						<Tab text="Titles">
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-								<ListView fx:id="titlesList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="438.0" />
+								<ListView fx:id="titlesList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="309.0" prefWidth="438.0" />
 							</content>
 						</Tab>
 						<Tab text="Artists">
@@ -68,6 +75,8 @@
 						</Tab>
 					</tabs>
 				</TabPane>
+            <Slider fx:id="volumeSlider" layoutX="485.0" layoutY="323.0" />
+            <Label layoutX="440.0" layoutY="321.0" text="Volume" />
 			</children>
 		</AnchorPane>
 	</children>

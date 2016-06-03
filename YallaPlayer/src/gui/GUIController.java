@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import business.Library;
 import javafx.application.Application;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -21,6 +23,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
@@ -67,6 +70,8 @@ public class GUIController extends Application {
 	private ColorPicker colorPicker;
 	@FXML
 	private TabPane tabPaneLibrary;
+	@FXML
+	private Slider volumeSlider;
 
 	private MediaPlayer mediaPlayer = null;
 	private SongDTO songDtoPlaying = null;
@@ -76,6 +81,7 @@ public class GUIController extends Application {
 	private ObservableList<SongDTO> titlesListForSearch = null;
 	private ObservableList<TitledPane> albumsListForSearch = null;
 	private ObservableList<TitledPane> interpretsListForSearch = null;
+	private double volume = 0.5;
 
 	public void showRootLayout() {
 		try {
@@ -83,6 +89,11 @@ public class GUIController extends Application {
 			loader.setController(this);
 			loader.setLocation(GUIController.class.getResource("/gui/RootView.fxml"));
 			rootLayout = (VBox) loader.load();
+
+			if (accentColor != null) {
+				rootLayout.setStyle("-fx-background-color: #" + Integer.toHexString(accentColor.hashCode()) + ";");
+			}
+
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -91,6 +102,7 @@ public class GUIController extends Application {
 			if (playStatus != null) {
 				playStatusLabel.setText(playStatus);
 			}
+
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -142,22 +154,6 @@ public class GUIController extends Application {
 				TitledPane tp = new TitledPane(playlist.getName(), singlePlaylistList);
 				tp.setExpanded(false);
 
-				// TODO add color accents
-				//
-				// if (accentColor != null) { // 8 symbols. String hex1 =
-				// Integer.toHexString(accentColor.hashCode());
-				//
-				// // With # prefix. String hex2 = "#" +
-				// Integer.toHexString(accentColor.hashCode());
-				//
-				// // 6 symbols in capital letters. String hex3 =
-				// Integer.toHexString(accentColor.hashCode()).substring(0,
-				// 6).toUpperCase(); // tp.setStyle("-fx-background-color: #"+
-				// hex3 +";");
-				//
-				// Label l = new Label("asdfasdf"); l.setStyle(
-				// "-fx-background-color: green;"); //tp.setTitle(l); }
-
 				if (playlistPlaying != null) {
 					if (playlist.getPlaylistID() == playlistPlaying.getPlaylistID()) {
 						titledPaneToExpand = tp;
@@ -167,6 +163,9 @@ public class GUIController extends Application {
 			}
 			accordionForPlaylists.getPanes().addAll(playlistsListForView);
 			accordionForPlaylists.setExpandedPane(titledPaneToExpand);
+
+		} else {
+			accordionForPlaylists.setDisable(true);
 		}
 
 		for (SongDTO song : library.getLibrary().getSongs()) {
@@ -205,6 +204,9 @@ public class GUIController extends Application {
 		}
 
 		addTabChangeListener();
+		addVolumeSliderListener();
+
+		volumeSlider.setValue(volume * 100);
 
 		titlesList.setItems(titlesListForView);
 		addListenerOnListView(titlesList);
@@ -380,13 +382,14 @@ public class GUIController extends Application {
 		songDtoPlaying = song;
 		playStatus = songDtoPlaying.getName() + " - Playing";
 		playStatusLabel.setText(playStatus);
-		final File resource = new File(song.getPath());
+		File resource = new File(song.getPath());
 		String tmpString = resource.toURI().toString();
-		final Media media = new Media(tmpString);
+		Media media = new Media(tmpString);
 		if (mediaPlayer != null) {
 			mediaPlayer.stop();
 		}
 		mediaPlayer = new MediaPlayer(media);
+		mediaPlayer.setVolume(volume);
 		mediaPlayer.play();
 		addEndSongListener();
 	}
@@ -452,17 +455,31 @@ public class GUIController extends Application {
 			@Override
 			public void run() {
 				if (playlistPlaying != null) {
-					ArrayList<Integer> songs = playlistPlaying.getSongs();
-					for (int i : songs) {
-						if (i == songDtoPlaying.getSongID()) {
-							int nextSongId = playlistPlaying.getSongs().indexOf(i) + 1;
-							SongDTO nextSong = library.getLibrary().getSong(playlistPlaying.getSongs().get(nextSongId));
-							if(nextSong != null){
-								nextSong.setPlaylist(playlistPlaying.getPlaylistID());
-								playSong(nextSong);
-							}
-						}
+					int nextSongId = playlistPlaying.getSongs().indexOf(songDtoPlaying.getSongID()) + 1;
+					SongDTO nextSong = library.getLibrary().getSong(playlistPlaying.getSongs().get(nextSongId));
+					if (nextSong != null) {
+						nextSong.setPlaylist(playlistPlaying.getPlaylistID());
+						playSong(nextSong);
 					}
+				} else {
+					int nextSongId = library.getLibrary().getSongs().indexOf(songDtoPlaying) + 1;
+					SongDTO nextSong = library.getLibrary().getSong(playlistPlaying.getSongs().get(nextSongId));
+					if (nextSong != null) {
+						nextSong.setPlaylist(playlistPlaying.getPlaylistID());
+						playSong(nextSong);
+					}
+				}
+			}
+		});
+	}
+	
+	public void addVolumeSliderListener() {
+		volumeSlider.valueProperty().addListener(new InvalidationListener() {
+			@Override
+			public void invalidated(Observable ov) {
+				if (volumeSlider.isValueChanging()) {
+					volume = volumeSlider.getValue() / 100.0;
+					mediaPlayer.setVolume(volume);
 				}
 			}
 		});
@@ -471,5 +488,6 @@ public class GUIController extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 
 }
