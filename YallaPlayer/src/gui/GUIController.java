@@ -266,6 +266,7 @@ public class GUIController extends Application {
 
 	public void playlistNameIsSet() {
 		newPlaylistName = playlistNameInput.getText();
+		newPlaylistName = newPlaylistName.trim();
 		if(!newPlaylistName.equals("")){
 			showAddPlaylistAddTitlesDialog();
 		} else {
