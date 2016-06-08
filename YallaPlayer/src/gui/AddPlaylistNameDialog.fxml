@@ -28,15 +28,18 @@
             <Insets />
           </HBox.margin>
         </HBox>
-        <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS" />
-        <Button fx:id="cancelButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" text="Cancel" HBox.hgrow="NEVER" onAction="#showRootLayout">
+        <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="addPlaylistNameErrorLabel" layoutX="27.0" layoutY="5.0" textFill="RED" />
+               </children></Pane>
+        <Button fx:id="cancelButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" onAction="#showRootLayout" text="Cancel" HBox.hgrow="NEVER">
           <HBox.margin>
             <Insets />
           </HBox.margin>
         </Button>
         <HBox fx:id="okParent" alignment="CENTER">
           <children>
-            <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" text="Ok" HBox.hgrow="NEVER" onAction="#playlistNameIsSet">
+            <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" onAction="#playlistNameIsSet" text="Ok" HBox.hgrow="NEVER">
               <HBox.margin>
                 <Insets left="14.0" />
               </HBox.margin>

@@ -72,6 +72,8 @@ public class GUIController extends Application {
 	private TabPane tabPaneLibrary;
 	@FXML
 	private Slider volumeSlider;
+	@FXML
+	private Label addPlaylistNameErrorLabel;
 
 	private MediaPlayer mediaPlayer = null;
 	private SongDTO songDtoPlaying = null;
@@ -133,7 +135,7 @@ public class GUIController extends Application {
 		ObservableList<SongDTO> titlesListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> albumsListForView = FXCollections.observableArrayList();
 		ObservableList<TitledPane> interpretsListForView = FXCollections.observableArrayList();
-		
+
 		TitledPane titledPaneToExpand = null;
 
 		if (library.getLibrary().getPlaylists() != null) {
@@ -212,7 +214,7 @@ public class GUIController extends Application {
 		addListenerOnListView(titlesList);
 		albumsList.setItems(albumsListForView);
 		interpretsList.setItems(interpretsListForView);
-		
+
 		interpretsListForSearch = interpretsListForView;
 		albumsListForSearch = albumsListForView;
 		titlesListForSearch = titlesListForView;
@@ -264,7 +266,12 @@ public class GUIController extends Application {
 
 	public void playlistNameIsSet() {
 		newPlaylistName = playlistNameInput.getText();
-		showAddPlaylistAddTitlesDialog();
+		if(!newPlaylistName.equals("")){
+			showAddPlaylistAddTitlesDialog();
+		} else {
+			addPlaylistNameErrorLabel.setText("Please enter a playlist-name");
+		}
+
 	}
 
 	private void showAddPlaylistAddTitlesDialog() {
@@ -328,17 +335,20 @@ public class GUIController extends Application {
 
 	public void playlistAdd() {
 		ObservableList<SongDTO> clickedSongs = selectTitlesForPlaylistList.getSelectionModel().getSelectedItems();
-		ArrayList<Integer> titles = new ArrayList<Integer>();
+		if(!clickedSongs.isEmpty()){
+			ArrayList<Integer> titles = new ArrayList<Integer>();
 
-		for (SongDTO song : clickedSongs) {
-			System.out.println(song.getSongID());
-			titles.add(song.getSongID());
+			for (SongDTO song : clickedSongs) {
+				System.out.println(song.getSongID());
+				titles.add(song.getSongID());
+			}
+
+			library.addPlaylist(newPlaylistName, titles);
+			library.writeContainerToXML();
+			library.readLibrary();
+			showRootLayout();
 		}
 
-		library.addPlaylist(newPlaylistName, titles);
-		library.writeContainerToXML();
-		library.readLibrary();
-		showRootLayout();
 	}
 
 	public void removeTitleFromPlaylist() {
@@ -473,14 +483,16 @@ public class GUIController extends Application {
 			}
 		});
 	}
-	
+
 	public void addVolumeSliderListener() {
 		volumeSlider.valueProperty().addListener(new InvalidationListener() {
 			@Override
 			public void invalidated(Observable ov) {
 				if (volumeSlider.isValueChanging()) {
 					volume = volumeSlider.getValue() / 100.0;
-					mediaPlayer.setVolume(volume);
+					if(mediaPlayer != null){
+						mediaPlayer.setVolume(volume);
+					}
 				}
 			}
 		});
@@ -489,6 +501,6 @@ public class GUIController extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 
 }

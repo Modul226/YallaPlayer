@@ -34,9 +34,9 @@
         <albumID>2</albumID>
         <name>Alpha Waves</name>
         <songs>26</songs>
-        <songs>29</songs>
-        <songs>32</songs>
+        <songs>28</songs>
         <songs>35</songs>
+        <songs>37</songs>
         <songs>41</songs>
         <songs>42</songs>
     </albums>
@@ -44,24 +44,24 @@
         <albumID>3</albumID>
         <name>Above the Trees Sampler</name>
         <songs>27</songs>
-        <songs>31</songs>
-        <songs>36</songs>
+        <songs>34</songs>
+        <songs>38</songs>
         <songs>43</songs>
     </albums>
     <albums>
         <albumID>4</albumID>
         <name>Anthophobia</name>
-        <songs>28</songs>
+        <songs>29</songs>
         <songs>30</songs>
-        <songs>34</songs>
-        <songs>37</songs>
-        <songs>39</songs>
+        <songs>31</songs>
+        <songs>32</songs>
+        <songs>33</songs>
     </albums>
     <albums>
         <albumID>5</albumID>
         <name>Holy Ground</name>
-        <songs>33</songs>
-        <songs>38</songs>
+        <songs>36</songs>
+        <songs>39</songs>
         <songs>40</songs>
         <songs>44</songs>
         <songs>45</songs>
@@ -86,329 +86,329 @@
     <songs>
         <interpret>1</interpret>
         <name>Usred Nr 1 Skit</name>
-        <path>C:\Users\erflo\TestBibliothek\01 Usred Nr 1 Skit.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/01 Usred Nr 1 Skit.mp3</path>
         <playlist>-1</playlist>
         <songID>0</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Rosario Intro</name>
-        <path>C:\Users\erflo\TestBibliothek\02 Rosario Intro.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/02 Rosario Intro.mp3</path>
         <playlist>-1</playlist>
         <songID>1</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Fischers Troum</name>
-        <path>C:\Users\erflo\TestBibliothek\03 Fischers Troum.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/03 Fischers Troum.mp3</path>
         <playlist>-1</playlist>
         <songID>2</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Jung Berchoer</name>
-        <path>C:\Users\erflo\TestBibliothek\04 Jung Berchoer.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/04 Jung Berchoer.mp3</path>
         <playlist>-1</playlist>
         <songID>3</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Märli RMX</name>
-        <path>C:\Users\erflo\TestBibliothek\05 Maerli RMX.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/05 Maerli RMX.mp3</path>
         <playlist>-1</playlist>
         <songID>4</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Homo Novus</name>
-        <path>C:\Users\erflo\TestBibliothek\06 Homo Novus.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/06 Homo Novus.mp3</path>
         <playlist>-1</playlist>
         <songID>5</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Gagi Zaut Mi (feat Ani &amp; Moflow)</name>
-        <path>C:\Users\erflo\TestBibliothek\07 Gagi Zaut Mi featuring Ani &amp; Moflow.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/07 Gagi Zaut Mi featuring Ani &amp; Moflow.mp3</path>
         <playlist>-1</playlist>
         <songID>6</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Hackfleisch RMX</name>
-        <path>C:\Users\erflo\TestBibliothek\08 Hackfleisch RMX.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/08 Hackfleisch RMX.mp3</path>
         <playlist>-1</playlist>
         <songID>7</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Uuh Uuh (feat Nativ &amp; Dawill)</name>
-        <path>C:\Users\erflo\TestBibliothek\09 Uuh Uuh featuring Nativ &amp; Dawill.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/09 Uuh Uuh featuring Nativ &amp; Dawill.mp3</path>
         <playlist>-1</playlist>
         <songID>8</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Check ds us (feat Dezmond Dez &amp; Manillio)</name>
-        <path>C:\Users\erflo\TestBibliothek\10 Check ds us featuring Dezmond Dez &amp; Manillio.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/10 Check ds us featuring Dezmond Dez &amp; Manillio.mp3</path>
         <playlist>-1</playlist>
         <songID>9</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Chischteri (feat Leduc)</name>
-        <path>C:\Users\erflo\TestBibliothek\11 Chischteri featuring Leduc.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/11 Chischteri featuring Leduc.mp3</path>
         <playlist>-1</playlist>
         <songID>10</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Café de Paris</name>
-        <path>C:\Users\erflo\TestBibliothek\12 Cafe de Paris.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/12 Cafe de Paris.mp3</path>
         <playlist>-1</playlist>
         <songID>11</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Gülsha Skit</name>
-        <path>C:\Users\erflo\TestBibliothek\13 Guelsha Skit.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/13 Guelsha Skit.mp3</path>
         <playlist>-1</playlist>
         <songID>12</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Mister Independent</name>
-        <path>C:\Users\erflo\TestBibliothek\14 Mister Independent.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/14 Mister Independent.mp3</path>
         <playlist>-1</playlist>
         <songID>13</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Papa Riche Skit</name>
-        <path>C:\Users\erflo\TestBibliothek\15 Papa Riche Skit.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/15 Papa Riche Skit.mp3</path>
         <playlist>-1</playlist>
         <songID>14</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Pierre</name>
-        <path>C:\Users\erflo\TestBibliothek\16 Pierre.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/16 Pierre.mp3</path>
         <playlist>-1</playlist>
         <songID>15</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Mindstate 2013</name>
-        <path>C:\Users\erflo\TestBibliothek\17 Mindstate 2013.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/17 Mindstate 2013.mp3</path>
         <playlist>-1</playlist>
         <songID>16</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Boum Skit</name>
-        <path>C:\Users\erflo\TestBibliothek\18 Boum Skit.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/18 Boum Skit.mp3</path>
         <playlist>-1</playlist>
         <songID>17</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Kaki für 2 (feat Curtis)</name>
-        <path>C:\Users\erflo\TestBibliothek\19 Kaki fuer 2 featuring Curtis.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/19 Kaki fuer 2 featuring Curtis.mp3</path>
         <playlist>-1</playlist>
         <songID>18</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Flygirl</name>
-        <path>C:\Users\erflo\TestBibliothek\20 Flygirl.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/20 Flygirl.mp3</path>
         <playlist>-1</playlist>
         <songID>19</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Loryplatz Skit</name>
-        <path>C:\Users\erflo\TestBibliothek\21 Loryplatz Skit.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/21 Loryplatz Skit.mp3</path>
         <playlist>-1</playlist>
         <songID>20</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Fuck (feat Manillio)</name>
-        <path>C:\Users\erflo\TestBibliothek\22 Fuck featuring Manillio.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/22 Fuck featuring Manillio.mp3</path>
         <playlist>-1</playlist>
         <songID>21</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Uf de Gass (feat CBN)</name>
-        <path>C:\Users\erflo\TestBibliothek\23 Uf de Gass featuring CBN.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/23 Uf de Gass featuring CBN.mp3</path>
         <playlist>-1</playlist>
         <songID>22</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>5-liber</name>
-        <path>C:\Users\erflo\TestBibliothek\24 5-liber.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/24 5-liber.mp3</path>
         <playlist>-1</playlist>
         <songID>23</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Maids Theme</name>
-        <path>C:\Users\erflo\TestBibliothek\25 Maids Theme.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/25 Maids Theme.mp3</path>
         <playlist>-1</playlist>
         <songID>24</songID>
     </songs>
     <songs>
         <interpret>1</interpret>
         <name>Madonna Inbox</name>
-        <path>C:\Users\erflo\TestBibliothek\26 Madonna Inbox.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/26 Madonna Inbox.mp3</path>
         <playlist>-1</playlist>
         <songID>25</songID>
     </songs>
     <songs>
         <interpret>2</interpret>
         <name>A Beast of Truth</name>
-        <path>C:\Users\erflo\TestBibliothek\a-beast-of-truth.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/a-beast-of-truth.mp3</path>
         <playlist>-1</playlist>
         <songID>26</songID>
     </songs>
     <songs>
         <interpret>3</interpret>
         <name>Above The Trees</name>
-        <path>C:\Users\erflo\TestBibliothek\above-the-trees.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/above-the-trees.mp3</path>
         <playlist>-1</playlist>
         <songID>27</songID>
     </songs>
     <songs>
-        <interpret>4</interpret>
-        <name>Alien Workshop</name>
-        <path>C:\Users\erflo\TestBibliothek\Alien Workshop.mp3</path>
+        <interpret>2</interpret>
+        <name>Alpha Waves</name>
+        <path>/Users/Mac-Flo/TestBibliothek/alpha-waves.mp3</path>
         <playlist>-1</playlist>
         <songID>28</songID>
     </songs>
     <songs>
-        <interpret>2</interpret>
-        <name>Alpha Waves</name>
-        <path>C:\Users\erflo\TestBibliothek\alpha-waves.mp3</path>
+        <interpret>4</interpret>
+        <name>Cream</name>
+        <path>/Users/Mac-Flo/TestBibliothek/Audio Dope - Anthophobia - 01 Cream.mp3</path>
         <playlist>-1</playlist>
         <songID>29</songID>
     </songs>
     <songs>
         <interpret>4</interpret>
-        <name>Anthophobia</name>
-        <path>C:\Users\erflo\TestBibliothek\Anthophobia.mp3</path>
+        <name>Gin and Diamonds</name>
+        <path>/Users/Mac-Flo/TestBibliothek/Audio Dope - Anthophobia - 02 Gin and Diamonds.mp3</path>
         <playlist>-1</playlist>
         <songID>30</songID>
     </songs>
     <songs>
-        <interpret>3</interpret>
-        <name>Be With Me</name>
-        <path>C:\Users\erflo\TestBibliothek\be-with-me.mp3</path>
+        <interpret>4</interpret>
+        <name>Nighthawk</name>
+        <path>/Users/Mac-Flo/TestBibliothek/Audio Dope - Anthophobia - 03 Nighthawk.mp3</path>
         <playlist>-1</playlist>
         <songID>31</songID>
     </songs>
     <songs>
-        <interpret>2</interpret>
-        <name>Breakfast For Dinner</name>
-        <path>C:\Users\erflo\TestBibliothek\breakfast-for-dinner.mp3</path>
+        <interpret>4</interpret>
+        <name>Alien Workshop</name>
+        <path>/Users/Mac-Flo/TestBibliothek/Audio Dope - Anthophobia - 04 Alien Workshop.mp3</path>
         <playlist>-1</playlist>
         <songID>32</songID>
     </songs>
     <songs>
-        <interpret>2</interpret>
-        <name>Budapest</name>
-        <path>C:\Users\erflo\TestBibliothek\budapest.mp3</path>
+        <interpret>4</interpret>
+        <name>Anthophobia</name>
+        <path>/Users/Mac-Flo/TestBibliothek/Audio Dope - Anthophobia - 05 Anthophobia.mp3</path>
         <playlist>-1</playlist>
         <songID>33</songID>
     </songs>
     <songs>
-        <interpret>4</interpret>
-        <name>Cream</name>
-        <path>C:\Users\erflo\TestBibliothek\Cream.mp3</path>
+        <interpret>3</interpret>
+        <name>Be With Me</name>
+        <path>/Users/Mac-Flo/TestBibliothek/be-with-me.mp3</path>
         <playlist>-1</playlist>
         <songID>34</songID>
     </songs>
     <songs>
         <interpret>2</interpret>
-        <name>Deluxe</name>
-        <path>C:\Users\erflo\TestBibliothek\deluxe.mp3</path>
+        <name>Breakfast For Dinner</name>
+        <path>/Users/Mac-Flo/TestBibliothek/breakfast-for-dinner.mp3</path>
         <playlist>-1</playlist>
         <songID>35</songID>
     </songs>
     <songs>
-        <interpret>3</interpret>
-        <name>Echoes of A Whole</name>
-        <path>C:\Users\erflo\TestBibliothek\echoes-of-a-whole.mp3</path>
+        <interpret>2</interpret>
+        <name>Budapest</name>
+        <path>/Users/Mac-Flo/TestBibliothek/budapest.mp3</path>
         <playlist>-1</playlist>
         <songID>36</songID>
     </songs>
     <songs>
-        <interpret>4</interpret>
-        <name>Gin and Diamonds</name>
-        <path>C:\Users\erflo\TestBibliothek\Gin and Diamonds.mp3</path>
+        <interpret>2</interpret>
+        <name>Deluxe</name>
+        <path>/Users/Mac-Flo/TestBibliothek/deluxe.mp3</path>
         <playlist>-1</playlist>
         <songID>37</songID>
     </songs>
     <songs>
-        <interpret>2</interpret>
-        <name>Holy Ground</name>
-        <path>C:\Users\erflo\TestBibliothek\holy-ground.mp3</path>
+        <interpret>3</interpret>
+        <name>Echoes of A Whole</name>
+        <path>/Users/Mac-Flo/TestBibliothek/echoes-of-a-whole.mp3</path>
         <playlist>-1</playlist>
         <songID>38</songID>
     </songs>
     <songs>
-        <interpret>4</interpret>
-        <name>Nighthawk</name>
-        <path>C:\Users\erflo\TestBibliothek\Nighthawk.mp3</path>
+        <interpret>2</interpret>
+        <name>Holy Ground</name>
+        <path>/Users/Mac-Flo/TestBibliothek/holy-ground.mp3</path>
         <playlist>-1</playlist>
         <songID>39</songID>
     </songs>
     <songs>
         <interpret>2</interpret>
         <name>Song Of Hope</name>
-        <path>C:\Users\erflo\TestBibliothek\song-of-hope.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/song-of-hope.mp3</path>
         <playlist>-1</playlist>
         <songID>40</songID>
     </songs>
     <songs>
         <interpret>2</interpret>
         <name>Takashis Bad Cat</name>
-        <path>C:\Users\erflo\TestBibliothek\takashis-bad-cat.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/takashis-bad-cat.mp3</path>
         <playlist>-1</playlist>
         <songID>41</songID>
     </songs>
     <songs>
         <interpret>2</interpret>
         <name>Tender Nerves</name>
-        <path>C:\Users\erflo\TestBibliothek\tender-nerves.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/tender-nerves.mp3</path>
         <playlist>-1</playlist>
         <songID>42</songID>
     </songs>
     <songs>
         <interpret>3</interpret>
         <name>The Other Man</name>
-        <path>C:\Users\erflo\TestBibliothek\the-other-man.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/the-other-man.mp3</path>
         <playlist>-1</playlist>
         <songID>43</songID>
     </songs>
     <songs>
         <interpret>2</interpret>
         <name>Toast...No Crust</name>
-        <path>C:\Users\erflo\TestBibliothek\toast-no-crust.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/toast-no-crust.mp3</path>
         <playlist>-1</playlist>
         <songID>44</songID>
     </songs>
     <songs>
         <interpret>2</interpret>
         <name>Today's Champion</name>
-        <path>C:\Users\erflo\TestBibliothek\todays-champion.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/todays-champion.mp3</path>
         <playlist>-1</playlist>
         <songID>45</songID>
     </songs>
     <songs>
         <interpret>2</interpret>
         <name>Treaty Line</name>
-        <path>C:\Users\erflo\TestBibliothek\treaty-line.mp3</path>
+        <path>/Users/Mac-Flo/TestBibliothek/treaty-line.mp3</path>
         <playlist>-1</playlist>
         <songID>46</songID>
     </songs>

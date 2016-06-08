@@ -108,6 +108,9 @@ public class ContainerDTO {
 		PlaylistDTO playlistDTO = getPlaylist(playlist);
 		int playlistIndex = playlists.indexOf(playlistDTO);
 		playlists.get(playlistIndex).removeSong(songID);
+		if(playlists.get(playlistIndex).getSongs().size() < 1){
+			removePlaylist(playlistDTO.getPlaylistID());
+		}
 	}
 
 	public void removePlaylist(int playlist) {
