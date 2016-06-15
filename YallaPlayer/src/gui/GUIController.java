@@ -503,5 +503,4 @@ public class GUIController extends Application {
 		launch(args);
 	}
 
-
 }
