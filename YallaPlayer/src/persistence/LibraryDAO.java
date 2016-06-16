@@ -1,3 +1,7 @@
+/**
+ * @author erflo
+ */
+
 package persistence;
 
 public interface LibraryDAO {

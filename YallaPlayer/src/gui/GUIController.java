@@ -1,3 +1,7 @@
+/**
+ * @author erflo
+ */
+
 package gui;
 
 import java.io.File;

@@ -1,3 +1,7 @@
+/**
+ * @author erflo
+ */
+
 package persistence;
 
 import java.util.ArrayList;

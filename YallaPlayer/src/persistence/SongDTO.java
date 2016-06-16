@@ -1,3 +1,7 @@
+/**
+ * @author erflo
+ */
+
 package persistence;
 
 import javax.xml.bind.annotation.XmlElement;

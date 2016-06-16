@@ -3,6 +3,9 @@ package persistence;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlElement;
+/**
+ * @author erflo
+ */
 
 public class PlaylistDTO {
 	private int playlistID;
