@@ -1,4 +1,5 @@
 /**
+ * Testing class for the persistence of the player
  * @author erflo
  */
 
@@ -39,6 +40,9 @@ public class YallaPlayerPersistenceTest {
 
 	}
 
+	/**
+	 * Test-case for getting a Title by ID from the containerDTO
+	 */
 	@Test
 	public void getTitleFromContainer() {
 		SongDTO songDTO = containerDTO.getSong(0);
@@ -48,6 +52,9 @@ public class YallaPlayerPersistenceTest {
 		assertEquals("ShittySong", songDTO.getName());
 	}
 
+	/**
+	 * Test-case for adding a playlist to a container
+	 */
 	@Test
 	public void addPlaylistToContainer() {
 		ArrayList<Integer> songs = new ArrayList<Integer>();

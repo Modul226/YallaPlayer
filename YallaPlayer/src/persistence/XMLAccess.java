@@ -1,5 +1,6 @@
 /**
- * @author erflo, waleed
+ * Class that reads all the MP3 Files and generates an containerDTO
+ * @author waleed, erflo)
  */
 
 package persistence;
@@ -21,11 +22,21 @@ public class XMLAccess implements LibraryDAO {
 	private ArrayList<AlbumDTO> albums = new ArrayList<>();
 	private ArrayList<InterpretDTO> interprets = new ArrayList<>();
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see persistence.LibraryDAO#getLibrary()
+	 */
 	@Override
 	public ContainerDTO getLibrary() {
 		return container;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see persistence.LibraryDAO#writeContainerToXML(persistence.ContainerDTO)
+	 */
 	@Override
 	public void writeContainerToXML(ContainerDTO containerDTO) {
 		containerDTO = container;
@@ -46,6 +57,11 @@ public class XMLAccess implements LibraryDAO {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see persistence.LibraryDAO#readLibrary()
+	 */
 	@Override
 	public void readLibrary() {
 		// Serializing
@@ -67,6 +83,11 @@ public class XMLAccess implements LibraryDAO {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see persistence.LibraryDAO#readLibrary(java.lang.String)
+	 */
 	@Override
 	public void readLibrary(String path) {
 		String pathDefault = System.getProperty("user.home") + "/TestBibliothek";

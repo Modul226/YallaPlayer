@@ -1,4 +1,6 @@
 /**
+ * GUIController handles the GUI-Events, plays the music etc.
+ *	It contains the main method for starting the player
  * @author erflo
  */
 
@@ -44,6 +46,7 @@ import persistence.InterpretDTO;
 import persistence.PlaylistDTO;
 import persistence.SongDTO;
 
+
 public class GUIController extends Application {
 
 	final int ROW_HEIGHT = 23;
@@ -88,6 +91,7 @@ public class GUIController extends Application {
 	private ObservableList<TitledPane> albumsListForSearch = null;
 	private ObservableList<TitledPane> interpretsListForSearch = null;
 	private double volume = 0.5;
+
 
 	public void showRootLayout() {
 		try {
@@ -271,7 +275,7 @@ public class GUIController extends Application {
 	public void playlistNameIsSet() {
 		newPlaylistName = playlistNameInput.getText();
 		newPlaylistName = newPlaylistName.trim();
-		if(!newPlaylistName.equals("")){
+		if (!newPlaylistName.equals("")) {
 			showAddPlaylistAddTitlesDialog();
 		} else {
 			addPlaylistNameErrorLabel.setText("Please enter a playlist-name");
@@ -340,7 +344,7 @@ public class GUIController extends Application {
 
 	public void playlistAdd() {
 		ObservableList<SongDTO> clickedSongs = selectTitlesForPlaylistList.getSelectionModel().getSelectedItems();
-		if(!clickedSongs.isEmpty()){
+		if (!clickedSongs.isEmpty()) {
 			ArrayList<Integer> titles = new ArrayList<Integer>();
 
 			for (SongDTO song : clickedSongs) {
@@ -495,7 +499,7 @@ public class GUIController extends Application {
 			public void invalidated(Observable ov) {
 				if (volumeSlider.isValueChanging()) {
 					volume = volumeSlider.getValue() / 100.0;
-					if(mediaPlayer != null){
+					if (mediaPlayer != null) {
 						mediaPlayer.setVolume(volume);
 					}
 				}
