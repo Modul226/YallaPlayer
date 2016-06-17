@@ -32,7 +32,7 @@ public class PlaylistDTO {
 	}
 
 	/**
-	 * @return playlistID
+	 * @return returns the ID of the playlist
 	 */
 	public int getPlaylistID() {
 		return playlistID;
@@ -52,10 +52,8 @@ public class PlaylistDTO {
 		return name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * Gives back text shown in the ListViews
 	 */
 	@Override
 	public String toString() {

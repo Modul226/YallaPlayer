@@ -101,7 +101,7 @@ public class GUIController extends Application {
 			rootLayout = (VBox) loader.load();
 
 			if (accentColor != null) {
-				rootLayout.setStyle("-fx-background-color: #" + Integer.toHexString(accentColor.hashCode()) + ";");
+				rootLayout.setStyle("-fx-background-color: #" + accentColor.toString().substring(2) + ";");
 			}
 
 			Scene scene = new Scene(rootLayout);

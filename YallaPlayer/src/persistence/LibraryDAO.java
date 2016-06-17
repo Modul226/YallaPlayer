@@ -7,7 +7,7 @@ package persistence;
 
 public interface LibraryDAO {
 	/**
-	 * @return containerDTO
+	 * @return Returns the full container
 	 */
 	public ContainerDTO getLibrary();
 

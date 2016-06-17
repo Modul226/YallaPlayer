@@ -27,7 +27,7 @@ public class InterpretDTO {
 	}
 
 	/**
-	 * @return interpretID
+	 * @return Returns the Id of the interpret
 	 */
 	public int getInterpretID() {
 		return interpretID;
@@ -50,16 +50,14 @@ public class InterpretDTO {
 	}
 
 	/**
-	 * @return name
+	 * @return Returns the name of the interpret
 	 */
 	public String getName() {
 		return name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * Gives back text shown in the ListViews
 	 */
 	@Override
 	public String toString() {

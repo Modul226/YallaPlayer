@@ -32,7 +32,7 @@ public class AlbumDTO {
 	}
 
 	/**
-	 * @return albumID
+	 * @return the ID of the album
 	 */
 	public int getAlbumID() {
 		return albumID;
@@ -45,14 +45,15 @@ public class AlbumDTO {
 		return songs;
 	}
 
+	/**
+	 * @return Name of the album
+	 */
 	public String getName() {
 		return name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * Gives back text shown in the ListViews
 	 */
 	@Override
 	public String toString() {

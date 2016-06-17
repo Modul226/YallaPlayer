@@ -16,9 +16,7 @@ public class SongDTO {
 	// Is only used when in playlist will be inserted in GUIController.java
 	private int playlist;
 
-	/**
-	 * 
-	 */
+
 	public SongDTO() {
 	}
 
@@ -38,37 +36,35 @@ public class SongDTO {
 	}
 
 	/**
-	 * @return path
+	 * @return Returns path of the MP3
 	 */
 	public String getPath() {
 		return path;
 	}
 
 	/**
-	 * @return songID
+	 * @return Returns songID of the Song
 	 */
 	public int getSongID() {
 		return songID;
 	}
 
 	/**
-	 * @return interpret
+	 * @return Returns interpret of the Song
 	 */
 	public int getInterpret() {
 		return interpret;
 	}
 
 	/**
-	 * @return name
+	 * @return Returns name of the Song
 	 */
 	public String getName() {
 		return name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * Gives back text shown in the ListViews
 	 */
 	@Override
 	public String toString() {
@@ -76,7 +72,7 @@ public class SongDTO {
 	}
 
 	/**
-	 * @return playlist
+	 * @return Returns playlistID of the Song
 	 */
 	public int getPlaylist() {
 		return playlist;
@@ -123,6 +119,8 @@ public class SongDTO {
 	}
 
 	/**
+	 * Is used for the search functionality
+	 * 
 	 * @param filter
 	 * @return this
 	 */

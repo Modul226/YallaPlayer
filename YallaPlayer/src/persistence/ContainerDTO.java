@@ -17,9 +17,7 @@ public class ContainerDTO {
 	private ArrayList<PlaylistDTO> playlists = new ArrayList<PlaylistDTO>();
 	private ArrayList<InterpretDTO> interprets = new ArrayList<InterpretDTO>();
 
-	/**
-	 * 
-	 */
+
 	public ContainerDTO() {
 	}
 
@@ -38,7 +36,7 @@ public class ContainerDTO {
 	}
 
 	/**
-	 * @return songs
+	 * @return All Songs in the library
 	 */
 	public ArrayList<SongDTO> getSongs() {
 		return songs;
@@ -46,7 +44,7 @@ public class ContainerDTO {
 
 	/**
 	 * @param songID
-	 * @return song
+	 * @return The song that fits the Id
 	 */
 	public SongDTO getSong(int songID) {
 		for (SongDTO song : songs) {
@@ -59,7 +57,7 @@ public class ContainerDTO {
 
 	/**
 	 * @param interpretID
-	 * @return interpret
+	 * @return returns the Interpret that fits the Id
 	 */
 	public InterpretDTO getInterpret(int interpretID) {
 		for (InterpretDTO interpret : interprets) {
@@ -72,7 +70,7 @@ public class ContainerDTO {
 
 	/**
 	 * @param playlistID
-	 * @return playlist
+	 * @return returns the Playlist that fits the Id
 	 */
 	public PlaylistDTO getPlaylist(int playlistID) {
 		for (PlaylistDTO playlist : playlists) {
@@ -86,7 +84,7 @@ public class ContainerDTO {
 
 	/**
 	 * @param interpretID
-	 * @return interpretSongs
+	 * @return returns all the Songs of the Interpret that fits the Id
 	 */
 	public ArrayList<SongDTO> getInterpretTitles(int interpretID) {
 		ArrayList<SongDTO> interpretSongs = new ArrayList<SongDTO>();
@@ -99,21 +97,21 @@ public class ContainerDTO {
 	}
 
 	/**
-	 * @return albums
+	 * @return Returns all albums in the Library
 	 */
 	public ArrayList<AlbumDTO> getAlbums() {
 		return albums;
 	}
 
 	/**
-	 * @return playlists
+	 * @return Returns all playlists in the Library
 	 */
 	public ArrayList<PlaylistDTO> getPlaylists() {
 		return playlists;
 	}
 
 	/**
-	 * @return interprets
+	 * @return Returns all interprets in the Library
 	 */
 	public ArrayList<InterpretDTO> getInterprets() {
 		return interprets;
